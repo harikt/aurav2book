@@ -1,354 +1,152 @@
-# Action Domain Responder
+# View Helpers
 
-We recommend you reading the 
-[MVC to ADR draft](https://github.com/pmjones/mvc-refinement).
+[Aura.Html](https://github.com/auraphp/Aura.Html) have been 
+extracted from Aura.View (v1), that can be used in any 
+template, view, or presentation system.
 
-Aura framework v2 promote the usage of one action per class.
+With the flexibility coming Aura.View (v2) need to integrate the Aura.Html
+helpers to make use of the various html helpers.
 
-In ADR there are 3 components.
+Aura.Html provides HTML escapers and helpers, including form input 
+helpers.
 
-1. Action is the logic that connects the Domain and Responder. 
-It uses the request input to interact with the Domain, and passes the 
-Domain output to the Responder.
+## Installing Aura.Html
 
-1. Domain is the logic to manipulate the domain, session, application, 
-and environment data, modifying state and persistence as needed.
+Edit your `composer.json` file and add `"aura/html": "2.0.*@dev"` in
+the require section.
 
-1. Responder is the logic to build an HTTP response or response description. 
-It deals with body content, templates and views, headers and cookies, 
-status codes, and so on.
-
-Basically 
-
-1. The web handler receives a client request and dispatches it to an _Action_.
-
-1. The _Action_ interacts with the _Domain_.
-
-1. The _Action_ feeds data to the _Responder_. (N.b.: This may include 
-results from the _Domain_ interaction, data from the client request, and so on.)
-
-1. The _Responder_ builds a response using the data fed to it by the _Action_.
-
-1. The web handler sends the response back to the client.
-
-## Responder
-
-Let us modify our previous example of _BlogRead_ action class to 
-render the contents via _BlogRead_ responder.
-
-Save at `{$PROJECT_PATH}/src/App/Responder/BlogRead.php` 
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Responders/BlogRead.php
- */
-namespace App\Responders;
-
-use Aura\View\View;
-use Aura\Web\Response;
-
-class BlogRead
-{
-    protected $data;
-
-    protected $response;
-
-    protected $view;
-
-    public function __construct(Response $response, View $view)
-    {
-        $this->response = $response;
-        $this->view = $view;
-        $this->data = (object) array();
-        $this->init();
-    }
-
-    protected function init()
-    {
-        $view_registry = $this->view->getViewRegistry();
-        $view_registry->set('read', __DIR__ . '/views/read.php');
-    }
-
-    public function __get($key)
-    {
-        return $this->data->$key;
-    }
-
-    public function __set($key, $val)
-    {
-        $this->data->$key = $val;
-    }
-
-    public function __isset($key)
-    {
-        return isset($this->data->$key);
-    }
-
-    public function __unset($key)
-    {
-        unset($this->data->$key);
-    }
-
-    public function __invoke()
-    {        
-        $responded = $this->notFound('blog')
-                  || $this->responseView('read');
-                  
-        if ($responded) {
-            return $this->response;
-        }        
-    }
-
-    protected function responseView($view)
-    {        
-        $this->view->setView($view);
-        $this->view->setData($this->data);
-        $this->response->content->set($this->view->__invoke());
-        return $this->response;
-    }
-    
-    protected function notFound($key)
-    {
-        if (! $this->data->$key) {
-            $this->response->status->set(404);
-            $this->response->content->set("404 not found");
-            return $this->response;
-        }
-    }
-}
-```
-
-Now modify the actions class `{$PROJECT_PATH}/src/App/Actions/BlogRead.php` 
-to inject the `BlogRead` responder. You also need to inject a 
-_Domain_ service which can fetch the details of the id. 
-We are skipping the service and assume you have some way to get the data.
-
-Remove the _View_ and _Response_ objects from the action class because 
-the responder is responsible for rendering the view and set the response.
-
-Now your modified action class will look like 
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Actions/BlogRead.php
- */
-namespace App\Actions;
-
-use Aura\Web\Request;
-use App\Responders\BlogRead as BlogReadResponder;
-
-class BlogRead
-{
-    protected $request;
-    
-    protected $responder;
-    
-    public function __construct(
-        Request $request, 
-        BlogReadResponder $responder        
-    ) {
-        // you may want to inject some service in-order to fetch the details
-        $this->request = $request;
-        $this->responder = $responder;        
-    }
-
-    public function __invoke($id)
-    {        
-        $blog = (object) array(
-            'id' => $id
-        );
-        // In real life you want to do something like $blog = $this->service->fetchId($id);
-        $this->responder->blog = $blog;
-        return $this->responder;
-    }
-}
-```
-
-Modify our Closure as a view file and save in 
-`{$PROJECT_PATH}/src/App/Responders/views/read.php`.
-
-```php
-<?php echo "Reading blog post {$this->blog->id}!"; ?>
-```
-
-Time to edit your configuration file `{$PROJECT_PATH}/config/Common.php` .
-
-Modify the class params for `App\Actions\BlogRead` to reflect 
-the changes made to the constructor.
-
-```php
-$di->params['App\Actions\BlogRead'] = array(
-    'request' => $di->lazyGet('web_request'),    
-    'responder' => $di->lazyNew('App\Responders\BlogRead'),
-);
-
-$di->params['App\Responders\BlogRead'] = array(
-    'response' => $di->lazyGet('web_response'),
-    'view' => $di->lazyNew('Aura\View\View'),
-);
-```
-
-Now time to browse the `http://localhost:8000/blog/read/1` . 
-
-### Questions 
-
-What have we achieved other than creating lots of classes ?
-
-That is really a good question. We are moving the responsibility 
-to its own layers which will help us in testing the application. 
-Web applications get evolved even we start small, so testing each and 
-every part is always a great way to move forward.
-
-This help us in to test the action classes, services etc. There are still 
-more room to improve like moving the methods which are always 
-needed for any responder to an _AbstractResponder_ etc.
-
-## Abstract Responder
-
-We have intentionally left not to make _AbstractResponder_ . 
-We feel most of them who are reading the docs will be new 
-to the concept of ADR. 
-So let us make the necessary changes like removing 
-some of the methods to make an _AbstractResponder_ 
-which can be extended by the _BlogRead_ responder.
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Responders/AbstractResponder.php
- */
-namespace App\Responders;
-
-use Aura\View\View;
-use Aura\Web\Response;
-
-abstract class AbstractResponder
-{
-    protected $data;
-
-    protected $response;
-
-    protected $view;
-
-    public function __construct(Response $response, View $view)
-    {
-        $this->response = $response;
-        $this->view = $view;
-        $this->data = (object) array();
-        $this->init();
-    }
-
-    protected function init()
-    {
-        // empty by default
-    }
-
-    public function __get($key)
-    {
-        return $this->data->$key;
-    }
-
-    public function __set($key, $val)
-    {
-        $this->data->$key = $val;
-    }
-
-    public function __isset($key)
-    {
-        return isset($this->data->$key);
-    }
-
-    public function __unset($key)
-    {
-        unset($this->data->$key);
-    }
-
-    abstract public function __invoke();
-
-    protected function responseView($view)
-    {
-        $this->view->setView($view);
-        $this->view->setData($this->data);
-        $this->response->content->set($this->view->__invoke());
-        return $this->response;
-    }
-    
-    protected function notFound($key)
-    {
-        if (! $this->data->$key) {
-            $this->response->status->set(404);
-            return $this->response;
-        }
-    }
-}
-```
-
-Edit your file `{$PROJECT_PATH}/src/App/Responders/BlogRead.php` keeping 
-only an `init()` method and `__invoke()` method. The `init()` helps us 
-to set the views and the path which need to be renderd by the responder.
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Responders/BlogRead.php
- */
-namespace App\Responders;
-
-use Aura\View\View;
-use Aura\Web\Response;
-
-class BlogRead extends AbstractResponder
+```json
 {    
-    protected function init()
-    {
-        $view_registry = $this->view->getViewRegistry();
-        $view_registry->set('read', __DIR__ . '/views/read.php');
-    }
-
-    public function __invoke()
-    {
-        $responded = $this->notFound('blog')
-                  || $this->responseView('read');
-
-        if ($responded) {
-            return $this->response;
-        }
+    "require": {
+        // ... other require libraries
+        "aura/html": "2.0.*@dev"        
     }
 }
 ```
 
-We also need to make some changes to the `{$PROJECT_PATH}/config/Common.php`
-file to make use of the inheritance for the DI container rather than we 
-always set the _View_ and _Response_ object.
+Save the file, and run
 
-We are modifying 
+```bash
+composer update
+```
+
+## DI Configuration
+
+The DI configuration for Aura.Html is already in 
+[config/Common.php](https://github.com/auraphp/Aura.Html/blob/develop-2/config/Common.php)
+
+Now we need to set the object `Aura\Html\HelperLocator` as the `helpers` 
+argument 
 
 ```php
-$di->params['App\Responders\BlogRead'] = array(
-    'response' => $di->lazyGet('web_response'),
-    'view' => $di->lazyNew('Aura\View\View'),
+$di->params['Aura\View\View'] = array(
+    'view_registry' => $di->lazyNew('Aura\View\TemplateRegistry'),
+    'layout_registry' => $di->lazyNew('Aura\View\TemplateRegistry'),
+    'helpers' => $di->lazyNew('Aura\View\HelperRegistry'),
 );
 ```
 
-to
+as in [aura/view/config/Common.php](https://github.com/auraphp/Aura.View/blob/develop-2/config/Common.php)
+
+Edit `{$PROJECT_PATH}/config/Common.php` file and add a line 
+`$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
+in `define()` method.
 
 ```php
-$di->params['App\Responders\AbstractResponder'] = array(
-    'response' => $di->lazyGet('web_response'),
-    'view' => $di->lazyNew('Aura\View\View'),
-);
+<?php
+namespace Aura\Web_Project\_Config;
+ 
+use Aura\Di\Config;
+use Aura\Di\Container;
+
+class Common extends Config
+{
+    public function define(Container $di)
+    {
+        // ...
+        $di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');
+    }
+    // ...
+}
 ```
 
-Basically only the `params['App\Responders\BlogRead']` is changed to
-`params['App\Responders\AbstractResponder']`
+Now you can use [tag helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-HELPERS.md), 
+[form helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md) 
+and [escaping](https://github.com/auraphp/Aura.Html#escaping) functionalities.
 
-Try out and you will see things working again.
+## Custom Helpers
 
-## Testing
+There are two steps to adding your own custom helpers:
 
-Until now we have been testing the application manually. Why not write 
-some phpunit tests.
+1. Write a helper class
 
-Stay tuned for more updates!
+2. Set a factory for that class into the _HelperLocator_ under a service name
+
+A helper class needs only to implement the `__invoke()` method.  
+We suggest extending from _AbstractHelper_ to get access to indenting, 
+escaping, etc., but it's not required.
+
+We are going to create a router helper which can return 
+the router object, and from which we can generate
+routes from the already defined routes.
+
+```php
+<?php
+<?php
+// {$PROJECT_PATH}/src/App/Html/Helper/Router.php
+namespace App\Html\Helper;
+
+use Aura\Html\Helper\AbstractHelper;
+use Aura\Router\Router as AuraRouter;
+
+class Router
+{
+    protected $router;
+
+    public function __construct(AuraRouter $router)
+    {
+        $this->router = $router;
+    }
+
+    public function __invoke()
+    {
+        return $this->router;
+    }
+}
+```
+
+Now that we have a helper class, we set a factory for it into the 
+_HelperLocator_ under a service name. 
+Therein, we create **and return** the helper class.
+
+Edit `{$PROJECT_PATH}/config/Common.php`
+
+```php
+<?php
+namespace Aura\Web_Project\_Config;
+ 
+use Aura\Di\Config;
+use Aura\Di\Container;
+
+class Common extends Config
+{
+    public function define(Container $di)
+    {
+        // ...
+        $di->params['App\Html\Helper\Router']['router'] = $di->lazyGet('web_router');
+        $di->params['Aura\Html\HelperLocator']['map']['router'] = $di->lazyNew('App\Html\Helper\Router');
+    }
+    // ...
+}
+```
+    
+The service name in the _HelperLocator_ doubles as a method name. 
+This means we can call the helper via `$this->router()`:
+
+```php
+<?php echo $this->router()->generate('blog.read', array('id', 2)); ?>
+```
+
+Note that we can use any service name for the helper, although it is generally
+useful to name the service for the helper class, and for a word that 
+can be called as a method.

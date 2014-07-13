@@ -1,25 +1,26 @@
-# View Helpers
+# View
 
-[Aura.Html](https://github.com/auraphp/Aura.Html) have been 
-extracted from Aura.View (v1), that can be used in any 
-template, view, or presentation system.
+Aura doesn't come packaged with any templating. Reason is love for 
+templating differs from person to person. And integrating any templating
+library in aura is not hard as long as it can be installed and loaded 
+via composer.
 
-With the flexibility coming Aura.View (v2) need to integrate the Aura.Html
-helpers to make use of the various html helpers.
+In this chapter we are going to integrate [Aura.View][] an implementation 
+of the [TemplateView](http://martinfowler.com/eaaCatalog/templateView.html) and 
+[TwoStepView](http://martinfowler.com/eaaCatalog/twoStepView.html) 
+patterns, with support for helpers and for closures as templates, 
+using PHP itself as the templating language.
 
-Aura.Html provides HTML escapers and helpers, including form input 
-helpers.
+## Installing Aura.View
 
-## Installing Aura.Html
-
-Edit your `composer.json` file and add `"aura/html": "2.0.*@dev"` in
+Edit your `composer.json` file and add `"aura/view": "2.0.0-beta2"` in
 the require section.
 
 ```json
 {    
     "require": {
         // ... other require libraries
-        "aura/html": "2.0.*@dev"        
+        "aura/view": "2.0.0-beta2"        
     }
 }
 ```
@@ -30,123 +31,126 @@ Save the file, and run
 composer update
 ```
 
-## DI Configuration
+The DI configuration for every aura library is already in 
+[config/Common.php](https://github.com/auraphp/Aura.View/blob/develop-2/config/Common.php)
 
-The DI configuration for Aura.Html is already in 
-[config/Common.php](https://github.com/auraphp/Aura.Html/blob/develop-2/config/Common.php)
+So we don't need to do anything for now.
 
-Now we need to set the object `Aura\Html\HelperLocator` as the `helpers` 
-argument 
+## Integration with actions
 
-```php
-$di->params['Aura\View\View'] = array(
-    'view_registry' => $di->lazyNew('Aura\View\TemplateRegistry'),
-    'layout_registry' => $di->lazyNew('Aura\View\TemplateRegistry'),
-    'helpers' => $di->lazyNew('Aura\View\HelperRegistry'),
-);
-```
+Let us integrate Aura.View to the full stack framework example shown in 
+previous chapter.
 
-as in [aura/view/config/Common.php](https://github.com/auraphp/Aura.View/blob/develop-2/config/Common.php)
-
-Edit `{$PROJECT_PATH}/config/Common.php` file and add a line 
-`$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
-in `define()` method.
+Edit the `{$PROJECT_PATH}/src/App/Actions/BlogRead.php` to accept 
+`Aura\View\View` object in constructor.
 
 ```php
 <?php
-namespace Aura\Web_Project\_Config;
- 
-use Aura\Di\Config;
-use Aura\Di\Container;
+/**
+ * {$PROJECT_PATH}/src/App/Actions/BlogRead.php
+ */
+namespace App\Actions;
 
-class Common extends Config
+use Aura\Web\Request;
+use Aura\Web\Response;
+use Aura\View\View;
+
+class BlogRead
 {
-    public function define(Container $di)
-    {
-        // ...
-        $di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');
-    }
     // ...
-}
-```
-
-Now you can use [tag helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-HELPERS.md), 
-[form helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md) 
-and [escaping](https://github.com/auraphp/Aura.Html#escaping) functionalities.
-
-## Custom Helpers
-
-There are two steps to adding your own custom helpers:
-
-1. Write a helper class
-
-2. Set a factory for that class into the _HelperLocator_ under a service name
-
-A helper class needs only to implement the `__invoke()` method.  
-We suggest extending from _AbstractHelper_ to get access to indenting, 
-escaping, etc., but it's not required.
-
-We are going to create a router helper which can return 
-the router object, and from which we can generate
-routes from the already defined routes.
-
-```php
-<?php
-<?php
-// {$PROJECT_PATH}/src/App/Html/Helper/Router.php
-namespace App\Html\Helper;
-
-use Aura\Html\Helper\AbstractHelper;
-use Aura\Router\Router as AuraRouter;
-
-class Router
-{
-    protected $router;
-
-    public function __construct(AuraRouter $router)
-    {
-        $this->router = $router;
-    }
-
-    public function __invoke()
-    {
-        return $this->router;
-    }
-}
-```
-
-Now that we have a helper class, we set a factory for it into the 
-_HelperLocator_ under a service name. 
-Therein, we create **and return** the helper class.
-
-Edit `{$PROJECT_PATH}/config/Common.php`
-
-```php
-<?php
-namespace Aura\Web_Project\_Config;
- 
-use Aura\Di\Config;
-use Aura\Di\Container;
-
-class Common extends Config
-{
-    public function define(Container $di)
-    {
-        // ...
-        $di->params['App\Html\Helper\Router']['router'] = $di->lazyGet('web_router');
-        $di->params['Aura\Html\HelperLocator']['map']['router'] = $di->lazyNew('App\Html\Helper\Router');
-    }
-    // ...
-}
-```
     
-The service name in the _HelperLocator_ doubles as a method name. 
-This means we can call the helper via `$this->router()`:
+    public function __construct(
+        Request $request, 
+        Response $response, 
+        View $view
+    ) {
+        $this->request = $request;
+        $this->response = $response;
+        $this->view = $view;
+    }
 
-```php
-<?php echo $this->router()->generate('blog.read', array('id', 2)); ?>
+    public function __invoke($id)
+    {
+        // ...        
+    }
+}
 ```
 
-Note that we can use any service name for the helper, although it is generally
-useful to name the service for the helper class, and for a word that 
-can be called as a method.
+Now, we need to modify the `config/Common.php` for the di container to
+pass the `Aura\View\View` object to `App\Actions\BlogRead`.
+
+```php
+<?php
+namespace Aura\Web_Project\_Config;
+ 
+use Aura\Di\Config;
+use Aura\Di\Container;
+
+class Common extends Config
+{
+    public function define(Container $di)
+    {
+        // ...
+
+        $di->params['App\Actions\BlogRead'] = array(
+            'request' => $di->lazyGet('web_request'),
+            'response' => $di->lazyGet('web_response'),
+            'view' => $di->lazyNew('Aura\View\View'),
+        );
+    }
+
+    // ...
+}
+```
+
+Now you can move the template to either a file or use Closure which can be 
+rendered by [Aura.View][].
+Let us once again edit the file `BlogRead.php` file `__invoke` method.
+
+```php
+<?php
+/**
+ * {$PROJECT_PATH}/src/App/Actions/BlogRead.php
+ */
+namespace App\Actions;
+
+// ...
+
+class BlogRead
+{
+    // ...
+
+    public function __invoke($id)
+    {
+        $view_registry = $this->view->getViewRegistry();
+        $view_registry->set('read', function () {
+            echo "Reading blog post {$this->id}!";
+        });
+        // or set a php template
+        // $view_registry->set('read', __DIR__ . '/views/read.php');
+        
+        $this->view->setData(array('id' => $id));
+        $this->view->setView('read');        
+        $this->response->content->set($this->view->__invoke());
+    }
+}
+```
+
+This documentation intentionally have not shown the 
+[ADR](https://github.com/pmjones/mvc-refinement) way. 
+We will be showing shortly in the upcoming chapters how not to use
+templates, logics etc in the same action class.
+
+Consider reading 
+[Aura.View](https://github.com/auraphp/Aura.View/#escaping-output) 
+documentation on how to use 
+[partials](https://github.com/auraphp/Aura.View/#using-sub-templates-aka-partials),
+[sections](https://github.com/auraphp/Aura.View/#using-sections) , 
+[helpers](https://github.com/auraphp/Aura.View/#using-helpers) , 
+[two step view](https://github.com/auraphp/Aura.View/#rendering-a-two-step-view)
+etc so we don't repeat here.
+
+In the next chapter we will show how to integrate 
+[Aura.Html](https://github.com/auraphp/Aura.Html) helpers in Aura.View.
+
+[Aura.View]: https://github.com/auraphp/Aura.View/
