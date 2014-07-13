@@ -130,9 +130,8 @@ class BlogRead
         // $view_registry->set('read', __DIR__ . '/views/read.php');
         
         $this->view->setData(array('id' => $id));
-        $this->view->setView('read');
-        $output = $this->view();
-        $this->response->content->set($output);
+        $this->view->setView('read');        
+        $this->response->content->set($this->view->__invoke());
     }
 }
 ```
