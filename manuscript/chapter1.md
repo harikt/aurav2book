@@ -71,7 +71,7 @@ Alternatively you can start the built in PHP server.
 php -S localhost:8000 -t web/
 ```
 
-If you point your web browser to `http://aura2.localhost/` you can see 
+If you point your web browser to `http://localhost:8000` you can see 
 the message `Hello World!`.
 
 Great!. Everything is working fine.
@@ -91,7 +91,7 @@ public function modifyWebRouter(Container $di)
 ```
 
 The `modifyWebRouter()` get the shared router service and added a route 
-named `hello` which points to `/` . So any request to `http://aura2.localhost/` 
+named `hello` which points to `/` . So any request to `http://localhost:8000` 
 is satisfied by route named `hello`.
 
 Now we have the route, the router don't know what to do when a request come.
