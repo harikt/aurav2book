@@ -124,7 +124,7 @@ to inject the `BlogRead` responder. You also need to inject a
 _Domain_ service which can fetch the details of the id. 
 We are skipping the service and assume you have some way to get the data.
 
-Remove the _View_ and _Response_ objects from the action class because  
+Remove the _View_ and _Response_ objects from the action class because 
 the responder is responsible for rendering the view and set the response.
 
 Now your modified action class will look like 
