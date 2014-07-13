@@ -120,11 +120,11 @@ class BlogRead
 ```
 
 Now modify the actions class `{$PROJECT_PATH}/src/App/Actions/BlogRead.php` 
-to inject the `BlogRead` responder. You need also need to inject a 
+to inject the `BlogRead` responder. You also need to inject a 
 _Domain_ service which can fetch the details of the id. 
 We are skipping the service and assume you have some way to get the data.
 
-Remove the _View_ and _Response_ objects from the action class for 
+Remove the _View_ and _Response_ objects from the action class because  
 the responder is responsible for rendering the view and set the response.
 
 Now your modified action class will look like 
@@ -166,16 +166,17 @@ class BlogRead
 }
 ```
 
-Create a view file at `{$PROJECT_PATH}/src/App/Responders/views/read.php`.
+Modify our Closure as a view file and save in 
+`{$PROJECT_PATH}/src/App/Responders/views/read.php`.
 
 ```php
 <?php echo "Reading blog post {$this->blog->id}!"; ?>
 ```
 
-Time to edit your configuration file. Edit `{$PROJECT_PATH}/config/Common.php` .
+Time to edit your configuration file `{$PROJECT_PATH}/config/Common.php` .
 
-Modify the class params for `App\Actions\BlogRead` with the changes made 
-to the constuctor.
+Modify the class params for `App\Actions\BlogRead` to reflect 
+the changes made to the constructor.
 
 ```php
 $di->params['App\Actions\BlogRead'] = array(
@@ -191,10 +192,12 @@ $di->params['App\Responders\BlogRead'] = array(
 
 Now time to browse the `http://localhost:8000/blog/read/1` . 
 
+### Questions 
+
 What have we achieved other than creating lots of classes ?
 
-Good question. We are moving the responsibility to its own layers 
-which will help us in testing the application. 
+That is really a good question. We are moving the responsibility 
+to its own layers which will help us in testing the application. 
 Web applications get evolved even we start small, so testing each and 
 every part is always a great way to move forward.
 
@@ -204,10 +207,12 @@ needed for any responder to an _AbstractResponder_ etc.
 
 ## Abstract Responder
 
-We have intentionally left not to make _AbstractResponder_ for 
-most of them will be new to the concept of ADR. Let us remove some 
-of the methods to make an `AbstractResponder` which can be extended 
-by the `BlogRead` responder.
+We have intentionally left not to make _AbstractResponder_ . 
+We feel most of them who are reading the docs will be new 
+to the concept of ADR. 
+So let us make the necessary changes like removing 
+some of the methods to make an _AbstractResponder_ 
+which can be extended by the _BlogRead_ responder.
 
 ```php
 <?php
