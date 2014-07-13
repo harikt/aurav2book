@@ -71,7 +71,7 @@ Alternatively you can start the built in PHP server.
 php -S localhost:8000 -t web/
 ```
 
-If you point your web browser to `http://aura2.localhost/` you can see 
+If you point your web browser to `http://localhost:8000` you can see 
 the message `Hello World!`.
 
 Great!. Everything is working fine.
