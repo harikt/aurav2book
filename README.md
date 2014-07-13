@@ -1,9 +1,10 @@
-# Aura Framework v2: The missing Manual
+# Aura Framework v2: The Missing Manual
 
-Aura framework v2: the misssing manual, is a [leanpub](https://leanpub.com/aurav2) 
+The [Aura Project](http://auraphp.com/about) centers around a collection of independent PHP packages. Each package is self-contained and has only the things it needs for its core purpose. None of the packages depends on any of the other - you can download and use each of the packages on its own. The [Aura System](http://auraphp.com/framework) is a full-stack framework built around these Aura library packages. *Aura Framework v2: The Missing Manual* is a clean and concise guide to using this powerful system.
+
+*Aura Framework v2: The Missing Manual* is a [leanpub](https://leanpub.com/aurav2) 
 book licenced under 
 [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/deed.en_US).
-
 
 ## Contribution
 
