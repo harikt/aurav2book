@@ -86,7 +86,8 @@ A helper class needs only to implement the `__invoke()` method.
 We suggest extending from _AbstractHelper_ to get access to indenting, 
 escaping, etc., but it's not required.
 
-We are going to create a router helper which can help us to generate
+We are going to create a router helper which can return 
+the router object, and from which we can generate
 routes from the already defined routes.
 
 ```php
@@ -98,11 +99,11 @@ namespace App\Html\Helper;
 use Aura\Html\Helper\AbstractHelper;
 use Aura\Router\Router as AuraRouter;
 
-class Router extends AbstractHelper
+class Router
 {
     protected $router;
 
-    public function setRouter(AuraRouter $router)
+    public function __construct(AuraRouter $router)
     {
         $this->router = $router;
     }
@@ -118,9 +119,6 @@ Now that we have a helper class, we set a factory for it into the
 _HelperLocator_ under a service name. 
 Therein, we create **and return** the helper class.
 
-Also the router object need to be set. In this case we are going to use 
-setter injection.
-
 Edit `{$PROJECT_PATH}/config/Common.php`
 
 ```php
@@ -135,7 +133,7 @@ class Common extends Config
     public function define(Container $di)
     {
         // ...
-        $di->setter['App\Html\Helper\Router']['setRouter'] = $di->lazyGet('web_router');
+        $di->params['App\Html\Helper\Router']['router'] = $di->lazyGet('web_router');
         $di->params['Aura\Html\HelperLocator']['map']['router'] = $di->lazyNew('App\Html\Helper\Router');
     }
     // ...
