@@ -91,7 +91,7 @@ public function modifyWebRouter(Container $di)
 ```
 
 The `modifyWebRouter()` get the shared router service and added a route 
-named `hello` which points to `/` . So any request to `http://aura2.localhost/` 
+named `hello` which points to `/` . So any request to `http://localhost:8000` 
 is satisfied by route named `hello`.
 
 Now we have the route, the router don't know what to do when a request come.
