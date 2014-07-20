@@ -275,7 +275,7 @@ abstract class AbstractResponder
         $this->response->content->set($this->view->__invoke());
         return $this->response;
     }
-    
+
     protected function notFound($key)
     {
         if (! $this->data->$key) {
@@ -301,7 +301,7 @@ use Aura\View\View;
 use Aura\Web\Response;
 
 class BlogRead extends AbstractResponder
-{    
+{
     protected function init()
     {
         $view_registry = $this->view->getViewRegistry();
@@ -346,10 +346,3 @@ Basically only the `params['App\Responders\BlogRead']` is changed to
 `params['App\Responders\AbstractResponder']`
 
 Try out and you will see things working again.
-
-## Testing
-
-Until now we have been testing the application manually. Why not write 
-some phpunit tests.
-
-Stay tuned for more updates!
