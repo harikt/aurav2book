@@ -1,5 +1,3 @@
-preface.md
-acknowledgement.md
 introduction.md
 di.md
 configuration.md
@@ -9,4 +7,6 @@ request-response.md
 view.md
 helpers.md
 adr.md
+validation.md
+forms.md
 setup.md
