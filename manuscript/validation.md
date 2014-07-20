@@ -1,5 +1,7 @@
 # Validation
 
+> The Aura.Filter v2 library is still under development, things can change.
+
 [Aura.Filter](https://github.com/auraphp/Aura.Filter) is a tool to validate 
 and sanitize data.
 
