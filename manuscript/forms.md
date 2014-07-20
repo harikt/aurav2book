@@ -10,15 +10,15 @@ Even though Aura.Input has a base filter implementation,
 it is good to integrate a powerful filter system like Aura.Filter.
 
 The `foa/filter-input-bundle` already have done the heavy lifting integrating
-the `aura/input`, `aura/filter` and having the configuration necessary
-for DI.
+the `aura/input`, `aura/filter` and having the necessary DI configuration.
 
-Add `foa/filter-input-bundle` in the require of your `composer.json`
+Add `foa/filter-input-bundle` in the require section of `composer.json`.
+Also feel free to remove `aura/filter` if you have it in the `composer.json`.
 
 ```json
 {
     "require": {
-        "foa/filter-input-bundle": "2.0.x@dev"
+        "foa/filter-input-bundle": "2.0.*@dev"
     }
 }
 ```
