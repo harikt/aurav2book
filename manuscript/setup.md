@@ -4,7 +4,7 @@
 
 We are going to point the virtual host to `aura.localhost`.
 If you are in a debain based OS, you want to create a file 
-`/etc/apache2/sites-available/aura2.localhost` with the below contents.
+`/etc/apache2/sites-available/aura2.localhost.conf` with the below contents.
 
 ```bash
 <VirtualHost *:80>
@@ -20,6 +20,8 @@ If you are in a debain based OS, you want to create a file
 
 `path/to/project` is where you installed the `aura/web-project` or 
 `aura/framework-project`.
+
+**NOTE:** Apache 2.4 users might have to add `Require all granted` below `AllowOverride all` in order to prevent a 401 response caused by [the changes in access control](https://httpd.apache.org/docs/2.4/upgrading.html#access).
 
 Enable the site using 
 
