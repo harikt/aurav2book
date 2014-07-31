@@ -69,8 +69,8 @@ class ContactForm extends Form
              ));
 
         // hint the view layer to treat the state field as a select, with a
-        // particular set of options (the keys are the option values, and the values
-        // are the displayed text)
+        // particular set of options (the keys are the option values,
+        // and the values are the displayed text)
         $this->setField('state', 'select')
              ->setAttribs(array(
                  'name' => "contact[state]",
