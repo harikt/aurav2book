@@ -86,7 +86,7 @@ public function modifyWebRouter(Container $di)
 {
     $router = $di->get('web_router');
     $router->add('hello', '/')
-           ->setValues(array('controller' => 'hello'));
+           ->setValues(array('action' => 'hello'));
 }
 ```
 

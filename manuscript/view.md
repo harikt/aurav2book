@@ -17,10 +17,10 @@ Edit your `composer.json` file and add `"aura/view": "2.0.0-beta2"` in
 the require section.
 
 ```json
-{    
+{
     "require": {
         // ... other require libraries
-        "aura/view": "2.0.0-beta2"        
+        "aura/view": "2.0.0-beta2"
     }
 }
 ```
@@ -58,7 +58,7 @@ use Aura\View\View;
 class BlogRead
 {
     // ...
-    
+
     public function __construct(
         Request $request, 
         Response $response, 
@@ -71,7 +71,7 @@ class BlogRead
 
     public function __invoke($id)
     {
-        // ...        
+        // ...
     }
 }
 ```
@@ -128,7 +128,7 @@ class BlogRead
         });
         // or set a php template
         // $view_registry->set('read', __DIR__ . '/views/read.php');
-        
+
         $this->view->setData(array('id' => $id));
         $this->view->setView('read');        
         $this->response->content->set($this->view->__invoke());

@@ -78,7 +78,7 @@ class Common extends Config
     {
         $request = $di->get('web_request');
         $response = $di->get('web_response');
-        
+
         $dispatcher = $di->get('web_dispatcher');
         $dispatcher->setObject(
             'blog.read',
@@ -126,7 +126,7 @@ class BlogRead
         $this->request = $request;
         $this->response = $response;
     }
-    
+
     public function __invoke($id)
     {
         $content = "Reading blog post $id";
@@ -212,7 +212,7 @@ class Common extends Config
         $router = $di->get('web_router');
         $router
             ->add('blog.read', '/blog/read/{id}')
-            ->addValues(array(                
+            ->addValues(array(
                 'action' => 'blog.read',
             ));
     }

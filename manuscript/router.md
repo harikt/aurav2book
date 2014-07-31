@@ -38,7 +38,7 @@ you are done with the chapter, else read on.
 
 Aura framework can act both as a micro framework or full stack framework. 
 If you are using it as a micro framework, you can set Closure as 
-the controller value, else set the same name of the action in the dispatcher.
+the action value, else set the same name of the action in the dispatcher.
 Dont' worry, we will be covering about dispatching in next chapter.
 
 > N.b.: This chapter gives you a basic understanding of the different types of 
