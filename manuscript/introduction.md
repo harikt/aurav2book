@@ -1,18 +1,18 @@
 # Getting Started
 
-[Composer](http://getcomposer.org) has become the defacto standard 
-for installing libraries in the php world. Aura do the same.
+[Composer](http://getcomposer.org) has become the de facto standard 
+for installing libraries in the php world. Aura does the same.
 
 
 ## Installation
 
-There are 3 types of skeltons
+There are 3 types of skeletons
 
 * aura/web-project : only web application, no cli support built in.
 * aura/cli-project : only for command line applications.
 * aura/framework-project : supports both web and cli
 
-We are going to install `aura/framework-project`, so we can show commandline 
+We are going to install `aura/framework-project`, so we can show command line 
 examples.
 
 ```php
@@ -64,7 +64,7 @@ complete for we have removed some of the files and directories.
 The `web/index.php` is where you need to point your virtual host. Check the 
 chapter Setting up your virtual host for more information.
 
-Alternatively you can start the built in PHP server.
+Alternatively you can start the built-in PHP server.
 
 
 ```bash
@@ -74,7 +74,7 @@ php -S localhost:8000 -t web/
 If you point your web browser to `http://localhost:8000` you can see 
 the message `Hello World!`.
 
-Great!. Everything is working fine.
+Great! Everything is working fine.
 
 ## Exploring the Hello World!
 
@@ -90,7 +90,7 @@ public function modifyWebRouter(Container $di)
 }
 ```
 
-The `modifyWebRouter()` get the shared router service and added a route 
+The `modifyWebRouter()` gets the shared router service and adds a route 
 named `hello` which points to `/` . So any request to `http://localhost:8000` 
 is satisfied by route named `hello`.
 
@@ -116,4 +116,4 @@ In this example we are using a Closure, which get the di container and use
 it as a service, get the shared web response and set the content.
 
 Don't worry too much about dependency injection and dependency injection 
-container. We will be talking more details in the same in next Chapter.
+container. We will be talking more details in the next Chapter.
