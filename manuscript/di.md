@@ -29,22 +29,25 @@ class PostService
 ```
 
 When creating a `PostService` we need to pass the `Database` object 
-in constructor time. The way of injecting dependencies is called 
-dependency injection.
+in constructor time. This way of providing for dependencies is called 
+dependency injection.  `PostService` depends on a `Database` object to function.
+We provide it as a parameter to inject it.
 
-If you have asked the question : Why not create the object in constructor itself ?
+If you have asked the question: why not create the object in constructor itself?
 
-Good you can do the same, but it becomes tightly coupled and will make 
-things hard for testing. 
+You can do so, but it becomes tightly coupled and will make 
+things harder for testing. To ease refactoring and maintenance, we want to avoid tight coupling
+between classes.
 
 When injecting dependencies we can easily mock the objects that are 
 injected, which helps us in testing.
 
 ## Dependency Injection Container
 
-Passing dependencies when there are less objects are not a big deal. It 
+Passing dependencies when there are few objects is not a big deal. It 
 will soon become harder when you have more objects and those objects have 
-dependencies.
+dependencies.  A common solution is the dependency injection container.  The
+container is a tool to simplify managing complex dependency injection situations. 
 
 Aura.Di is a dependency injection container system with the following features:
 
@@ -52,7 +55,7 @@ Aura.Di is a dependency injection container system with the following features:
 
 * lazy-loading of services
 
-* inheritable configuration of setters and constructor params
+* inheritable configuration of setters and constructor parameters
 
 * configuration of setters across interfaces and traits
 
@@ -300,7 +303,7 @@ recognized by the configuration system, so long as we instantiate it via
 ## Factories and Dependency Fulfillment
 
 Creating a service for each of the model objects in our application can become
-tiresome. We may need to create other models, and we don't want to have to
+tedious. We may need to create other models, and we don't want to have to
 create a separate service for each one. In addition, we may need to create
 model objects from within another object. Finally, we don't want to create
 model objects until we actually need them. This is where we can make use of
