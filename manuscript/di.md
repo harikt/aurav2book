@@ -3,7 +3,7 @@
 > N.b.: Read this chapter carefully. You may want to revisit this chapter
 often in your development.
 
-Dependency injection is not a hard subject. You would have already worked 
+Dependency injection is not a hard subject. You may have already worked 
 on this.
 
 Let us take a pseudo example of a `PostService`.
@@ -46,7 +46,7 @@ injected, which helps us in testing.
 
 Passing dependencies when there are few objects is not a big deal. It 
 will soon become harder when you have more objects and those objects have 
-dependencies.  A common solution is the dependency injection container.  The
+dependencies.  A common solution is using a dependency injection container.  The
 container is a tool to simplify managing complex dependency injection situations. 
 
 Aura.Di is a dependency injection container system with the following features:
