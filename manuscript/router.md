@@ -34,20 +34,20 @@ class Common extends Config
 
 The `web_router` is an object of type _Aura\Router\Router_ . So if you are 
 familiar with [Aura.Router](https://github.com/auraphp/Aura.Router) then 
-you are done with the chapter, else read on.
+you are done with this chapter, else read on.
 
 Aura framework can act both as a micro framework or full stack framework. 
-If you are using it as a micro framework, you can set Closure as 
+If you are using it as a micro framework, you can set a Closure as 
 the action value, else set the same name of the action in the dispatcher.
-Dont' worry, we will be covering about dispatching in next chapter.
+Don't worry, we will cover dispatching in next chapter.
 
-> N.b.: This chapter gives you a basic understanding of the different types of 
+> Note: This chapter gives you a basic understanding of the different types of 
 methods available in router.
 
 ## Adding a Route
 
 We will not be showing the whole config file to reduce the space used. 
-But the document assume you are adding in the `modify()` method after 
+This document assumes you are adding the route in the `modify()` method after 
 getting the router service.
 
 To create a route, call the `add()` method on the _Router_. Named path-info
@@ -419,5 +419,5 @@ $router->setResourceCallable(function ($router) {
 });
 ```
 
-That example will cause only four CRUD routes, using hexadecimal resource IDs,
+The example will cause only four CRUD routes, using hexadecimal resource IDs,
 to be added for the resource when you call `attachResource()`.
