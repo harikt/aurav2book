@@ -7,9 +7,9 @@ with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
 * Modified Micro-Framework Style
 * Full-Stack Style
 
-So if you start the application as a small one and as it grows, 
+So if your application starts small and grows, 
 it is easy to modify the application routes acting as a micro framework 
-to a full stack style.
+to a full-stack style.
 
 > N.b.: You can skip to your favourite usage.
 
