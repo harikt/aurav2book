@@ -2,7 +2,7 @@
 
 We don't want to duplicate the work done on the documentation 
 of Aura.Web library, but at the same time, people who are new to 
-aura framework probably don't know about 
+Aura Framework probably don't know about 
 [Request](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md) and
 [Response](https://github.com/auraphp/Aura.Web/blob/develop-2/README-RESPONSE.md)
 objects introduced in the previous chapters.
@@ -14,7 +14,7 @@ For a detailed information consider reading
 
 ## REQUEST
 
-The _Request_ object has these sub-objects ...
+The _Request_ object has these sub-objects:
 
 - [$request->cookies](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md#superglobals) for $_COOKIES
 - [$request->env](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md#superglobals) for $_ENV
