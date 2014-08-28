@@ -1,9 +1,9 @@
 # View
 
-Aura doesn't come packaged with any templating. Reason is love for 
+Aura doesn't come packaged with any templating. The reason is love for 
 templating differs from person to person. And integrating any templating
-library in aura is not hard as long as it can be installed and loaded 
-via composer.
+library in Aura is not hard as long as it can be installed and loaded 
+via Composer.
 
 In this chapter we are going to integrate [Aura.View][] an implementation 
 of the [TemplateView](http://martinfowler.com/eaaCatalog/templateView.html) and 
@@ -76,7 +76,7 @@ class BlogRead
 }
 ```
 
-Now, we need to modify the `config/Common.php` for the di container to
+Now, we need to modify the `config/Common.php` for the DI container to
 pass the `Aura\View\View` object to `App\Actions\BlogRead`.
 
 ```php
@@ -103,7 +103,7 @@ class Common extends Config
 }
 ```
 
-Now you can move the template to either a file or use Closure which can be 
+Now you can move the template to a file or use a Closure which can be 
 rendered by [Aura.View][].
 Let us once again edit the file `BlogRead.php` file `__invoke` method.
 
@@ -136,10 +136,10 @@ class BlogRead
 }
 ```
 
-This documentation intentionally have not shown the 
+This documentation intentionally has not shown the 
 [ADR](https://github.com/pmjones/mvc-refinement) way. 
-We will be showing shortly in the upcoming chapters how not to use
-templates, logics etc in the same action class.
+We will be showing shortly in the upcoming chapters how to use
+templates, logics etc. not in the same action class.
 
 Consider reading 
 [Aura.View](https://github.com/auraphp/Aura.View/#escaping-output) 
@@ -148,7 +148,7 @@ documentation on how to use
 [sections](https://github.com/auraphp/Aura.View/#using-sections) , 
 [helpers](https://github.com/auraphp/Aura.View/#using-helpers) , 
 [two step view](https://github.com/auraphp/Aura.View/#rendering-a-two-step-view)
-etc so we don't repeat here.
+etc. as we don't repeat that information here.
 
 In the next chapter we will show how to integrate 
 [Aura.Html](https://github.com/auraphp/Aura.Html) helpers in Aura.View.
