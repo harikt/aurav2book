@@ -1,11 +1,11 @@
 # View Helpers
 
-[Aura.Html](https://github.com/auraphp/Aura.Html) have been 
-extracted from Aura.View (v1), that can be used in any 
+The [Aura.Html](https://github.com/auraphp/Aura.Html) package has been 
+extracted from Aura.View (v1), and can now be used in any 
 template, view, or presentation system.
 
-With the flexibility coming Aura.View (v2) need to integrate the Aura.Html
-helpers to make use of the various html helpers.
+With the added flexibility in Aura.View (v2), one can use the Aura.Html
+package to make use of the various HTML helpers.
 
 Aura.Html provides HTML escapers and helpers, including form input 
 helpers.
@@ -48,7 +48,7 @@ $di->params['Aura\View\View'] = array(
 
 as in [aura/view/config/Common.php](https://github.com/auraphp/Aura.View/blob/develop-2/config/Common.php)
 
-Edit `{$PROJECT_PATH}/config/Common.php` file and add a line 
+Edit the `{$PROJECT_PATH}/config/Common.php` file and add a line 
 `$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
 in `define()` method.
 
@@ -78,9 +78,9 @@ and [escaping](https://github.com/auraphp/Aura.Html#escaping) functionalities.
 
 There are two steps to adding your own custom helpers:
 
-1. Write a helper class
+1. Write a helper class.
 
-2. Set a factory for that class into the _HelperLocator_ under a service name
+2. Set a factory for that class into the _HelperLocator_ under a service name.
 
 A helper class needs only to implement the `__invoke()` method.  
 We suggest extending from _AbstractHelper_ to get access to indenting, 
