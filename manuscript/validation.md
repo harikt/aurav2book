@@ -1,21 +1,19 @@
 # Validation
 
-> The Aura.Filter v2 library is still under development, things can change.
-
-[Aura.Filter](https://github.com/auraphp/Aura.Filter) is a tool to validate 
+[Aura.Filter](https://github.com/auraphp/Aura.Filter) is a tool to validate
 and sanitize data.
 
-We are going to look into version 2 of Aura.Filter.
+We are going to look into version 1 of Aura.Filter.
 
 ## Installation
 
-Add `"aura/filter": "2.0.*@dev"` into the require section of `composer.json`.
+We have already installed `aura/filter` adding `foa/filter-intl-bundle` into `composer.json`.
 
 ```json
 {
     "require": {
-        // ...
-        "aura/filter": "2.0.*@dev"
+        //
+        "foa/filter-intl-bundle": "1.1.*"
     }
 }
 ```
@@ -26,31 +24,18 @@ and run
 composer update
 ```
 
-## Instantiation
+## Documentation
 
-The easiest way to instantiate a new filter (i.e., a new `Aura\Filter\RuleCollection`) 
-with all the available rules is to use the FilterFactory class.
+Please consider reading
 
-```php
-$filter = (new FilterFactory())->newInstance();
-```
+* [soft, hard, and stop rules](https://github.com/auraphp/Aura.Filter/#soft-hard-and-stop-rules)
 
-We may be mostly using it with DI configuration.
+* [validation and sanitization](https://github.com/auraphp/Aura.Filter/#validating-and-sanitizing)
 
-We are not going to cover 
-[soft, hard, and stop rules](https://github.com/auraphp/Aura.Filter/#soft-hard-and-stop-rules), 
-[validation and sanitization](https://github.com/auraphp/Aura.Filter/#validating-and-sanitizing),
-[available rules](https://github.com/auraphp/Aura.Filter/#available-rules),
-[writing your rule class](https://github.com/auraphp/Aura.Filter/#creating-and-using-custom-rules).
+* [available rules](https://github.com/auraphp/Aura.Filter/#available-rules)
 
-We don't want to duplicate the efforts of the Aura.Filter documentation
-and feel there is nothing more to add here. So please refer to the
-[documentation on Aura.Filter](https://github.com/auraphp/Aura.Filter/blob/develop-2/README.md#getting-started).
-If you find something missing or hard to follow
+*[writing your rule class](https://github.com/auraphp/Aura.Filter/#creating-and-using-custom-rules)
+
+[Read documentation from Aura.Filter](https://github.com/auraphp/Aura.Filter/blob/develop-2/README.md#getting-started).
+If you find something missing or hard to follow,
 [open an issue](https://github.com/harikt/aurav2book/issues) happy to help.
-
-## Messages and Internationalization
-
-The error messages you will be getting on failures will be string constants. So you
-may need to convert them to proper string. We will cover this in the
-internationalization section.

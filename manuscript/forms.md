@@ -1,24 +1,25 @@
 # Forms
 
 Forms are an integral part of web application.
-[Aura.Input](https://github.com/auraphp/Aura.Input) is a tool to 
-describe HTML fields and values. 
+[Aura.Input](https://github.com/auraphp/Aura.Input) is a tool to
+describe HTML fields and values.
 
 ## Installation
 
 Even though Aura.Input has a base filter implementation,
 it is good to integrate a powerful filter system like Aura.Filter.
 
-The `foa/filter-input-bundle` already have done the heavy lifting integrating
-the `aura/input`, `aura/filter` and having the necessary DI configuration.
+The `foa/filter-input-bundle`, and `foa/filter-intl-bundle` already
+have done the heavy lifting integrating the `aura/input`, `aura/filter`,
+`aura/intl` and having the necessary DI configuration.
 
-Add `foa/filter-input-bundle` in the require section of `composer.json`.
-Also feel free to remove `aura/filter` if you have it in the `composer.json`.
+Add those bundles to your `composer.json`.
 
 ```json
 {
     "require": {
-        "foa/filter-input-bundle": "2.0.*@dev"
+        "foa/filter-input-bundle": "1.1.*",
+        "foa/filter-intl-bundle": "1.1.*"
     }
 }
 ```
@@ -87,8 +88,9 @@ class ContactForm extends Form
             ]);
         // etc.
 
-        // set input filters
+        // get filter object
         $filter = $this->getFilter();
+        // set your filters.
         $filter->addSoftRule('first_name', $filter::IS, 'string');
         $filter->addSoftRule('first_name', $filter::IS, 'strlenMin', 4);
         $filter->addSoftRule('state', $filter::IS, 'inKeys', array_keys($states));
@@ -98,10 +100,14 @@ class ContactForm extends Form
 }
 ```
 
+We will talk about [Aura.Filter](https://github.com/auraphp/Aura.Filter/tree/develop) in next chapter.
+
+> Note : We are using v1 components of input, intl, filter.
+
 ## Configuration
 
 If we create `App\Input\ContactForm` object via the new operator
-we need to pass the dependencies manually.
+we need to pass the dependencies manually as
 
 ```php
 use Aura\Input\Form;
@@ -112,17 +118,17 @@ $filter = new Filter();
 
 // add rules to the filter
 
-$contactform = new ContactForm(new Builder, $filter);
+$contact_form = new ContactForm(new Builder, $filter);
 ```
 
-Creating object via DI configuration helps us not to add the dependencies, 
+Creating object via DI configuration helps us not to add the dependencies,
 add the necessary rules to the filter.
 
-We only need to figure out where we need the form, and use params or 
+We only need to figure out where we need the form, and use params or
 setter injection.
 
 ```php
-$di->params['Vendor\Package\SomeDomain']['contactform'] = $di->lazyNew('App\Input\ContactForm');
+$di->params['Vendor\Package\SomeDomain']['contact_form'] = $di->lazyNew('App\Input\ContactForm');
 ```
 
 ## Populating
@@ -130,8 +136,10 @@ $di->params['Vendor\Package\SomeDomain']['contactform'] = $di->lazyNew('App\Inpu
 Form can be populated using `fill()` method.
 
 ```php
-$this->contactform->fill($_POST);
+$this->contact_form->fill($_POST);
 ```
+
+> In aura term it will be [$this->request->post->get()](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md#superglobals)
 
 ## Validating User Input
 
@@ -139,29 +147,29 @@ You can validate the form via the `filter()` method.
 
 ```php
 // apply the filters
-$pass = $this->contactform->filter();
+$pass = $this->contact_form->filter();
 
 // did all the filters pass?
 if ($pass) {
     // yes input is valid.
 } else {
-    // no; user input is not valid.    
+    // no; user input is not valid.
 }
 ```
 
 ## Rendering
 
-Inorder to render the form, we need to pass the ContactForm object and use the 
+Inorder to render the form, we need to pass the ContactForm object and use the
 `Aura.Html` helpers.
 
 Assuming you have passed the `ContactForm` object, and the variable assigned
-is `contactform` you can use the `get` method on the form object to
+is `contact_form` you can use the `get` method on the form object to
 get the hints of field, and pass to input helper.
 
 An example is given below :
 
 ```php
-echo $this->input($this->contactform->get('first_name'));
+echo $this->input($this->contact_form->get('first_name'));
 ```
 
 Read more [on form helpers here](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md).
