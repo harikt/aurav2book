@@ -12,14 +12,14 @@ helpers.
 
 ## Installing Aura.Html
 
-Edit your `composer.json` file and add `"aura/html": "2.0.*@dev"` in
+Edit your `composer.json` file and add `"aura/html": "2.0.*"` in
 the require section.
 
 ```json
 {    
     "require": {
         // ... other require libraries
-        "aura/html": "2.0.*@dev"        
+        "aura/html": "2.0.*"
     }
 }
 ```
@@ -51,6 +51,12 @@ as in [aura/view/config/Common.php](https://github.com/auraphp/Aura.View/blob/de
 Edit the `{$PROJECT_PATH}/config/Common.php` file and add a line 
 `$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
 in `define()` method.
+
+> Note : The service name definitions are getting changed from `html_helper`
+to `aura/<library>:<service>`. If you are using `2.0.0` then the service name 
+is `html_helper`. If you are using `dev` version it is `aura/html:helper`.
+And also not to spend more time on the config for different projects you 
+have [https://github.com/friendsofaura/FOA.Html_View_Bundle](https://github.com/friendsofaura/FOA.Html_View_Bundle)
 
 ```php
 <?php
@@ -139,7 +145,7 @@ class Common extends Config
     // ...
 }
 ```
-    
+
 The service name in the _HelperLocator_ doubles as a method name. 
 This means we can call the helper via `$this->router()`:
 

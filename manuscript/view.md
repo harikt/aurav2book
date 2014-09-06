@@ -1,6 +1,6 @@
 # View
 
-Aura doesn't come packaged with any templating. The reason is love for 
+Aura web framework doesn't come packaged with any templating. The reason is love for 
 templating differs from person to person. And integrating any templating
 library in Aura is not hard as long as it can be installed and loaded 
 via Composer.
@@ -13,14 +13,14 @@ using PHP itself as the templating language.
 
 ## Installing Aura.View
 
-Edit your `composer.json` file and add `"aura/view": "2.0.0-beta2"` in
+Edit your `composer.json` file and add `"aura/view": "2.0.*"` in
 the require section.
 
 ```json
 {
     "require": {
         // ... other require libraries
-        "aura/view": "2.0.0-beta2"
+        "aura/view": "2.0.*"
     }
 }
 ```
@@ -103,7 +103,7 @@ class Common extends Config
 }
 ```
 
-Now you can move the template to a file or use a Closure which can be 
+Now move the template to a file or use a Closure which can be 
 rendered by [Aura.View][].
 Let us once again edit the file `BlogRead.php` file `__invoke` method.
 
@@ -130,7 +130,7 @@ class BlogRead
         // $view_registry->set('read', __DIR__ . '/views/read.php');
 
         $this->view->setData(array('id' => $id));
-        $this->view->setView('read');        
+        $this->view->setView('read');
         $this->response->content->set($this->view->__invoke());
     }
 }
@@ -148,7 +148,7 @@ documentation on how to use
 [sections](https://github.com/auraphp/Aura.View/#using-sections) , 
 [helpers](https://github.com/auraphp/Aura.View/#using-helpers) , 
 [two step view](https://github.com/auraphp/Aura.View/#rendering-a-two-step-view)
-etc. as we don't repeat that information here.
+etc.
 
 In the next chapter we will show how to integrate 
 [Aura.Html](https://github.com/auraphp/Aura.Html) helpers in Aura.View.

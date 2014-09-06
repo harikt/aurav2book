@@ -1,12 +1,18 @@
 # Request and Response
 
-We don't want to duplicate the work done on the documentation 
-of Aura.Web library, but at the same time, people who are new to 
-Aura Framework probably don't know about 
-[Request](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md) and
-[Response](https://github.com/auraphp/Aura.Web/blob/develop-2/README-RESPONSE.md)
-objects introduced in the previous chapters.
+Until now we have been mostly using the same docs of the aura 
+libraries. Let us not duplicate the work done on the documentation 
+of each library, but at the same time, people who are new to 
+aura framework probably don't know about it.
 
+So we will link to the docs which will help you 
+to learn more on the subject.
+
+We introduced 
+[Request](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md) and
+and 
+[Response](https://github.com/auraphp/Aura.Web/blob/develop-2/README-RESPONSE.md)
+class in previous chapters.
 A basic overview of the available objects and sub-objects is given below. 
 For a detailed information consider reading 
 [Request](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md) and

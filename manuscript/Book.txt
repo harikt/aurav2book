@@ -7,6 +7,6 @@ request-response.md
 view.md
 helpers.md
 adr.md
-validation.md
 forms.md
+validation.md
 setup.md
