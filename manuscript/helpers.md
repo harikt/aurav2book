@@ -1,13 +1,13 @@
 # View Helpers
 
-The [Aura.Html](https://github.com/auraphp/Aura.Html) package has been 
-extracted from Aura.View (v1), and can now be used in any 
+The [Aura.Html](https://github.com/auraphp/Aura.Html) package has been
+extracted from Aura.View (v1), and can now be used in any
 template, view, or presentation system.
 
 With the added flexibility in Aura.View (v2), one can use the Aura.Html
 package to make use of the various HTML helpers.
 
-Aura.Html provides HTML escapers and helpers, including form input 
+Aura.Html provides HTML escapers and helpers, including form input
 helpers.
 
 ## Installing Aura.Html
@@ -16,7 +16,7 @@ Edit your `composer.json` file and add `"aura/html": "2.0.*"` in
 the require section.
 
 ```json
-{    
+{
     "require": {
         // ... other require libraries
         "aura/html": "2.0.*"
@@ -32,11 +32,11 @@ composer update
 
 ## DI Configuration
 
-The DI configuration for Aura.Html is already in 
+The DI configuration for Aura.Html is already in
 [config/Common.php](https://github.com/auraphp/Aura.Html/blob/develop-2/config/Common.php)
 
-Now we need to set the object `Aura\Html\HelperLocator` as the `helpers` 
-argument 
+Now we need to set the object `Aura\Html\HelperLocator` as the `helpers`
+argument
 
 ```php
 $di->params['Aura\View\View'] = array(
@@ -48,20 +48,20 @@ $di->params['Aura\View\View'] = array(
 
 as in [aura/view/config/Common.php](https://github.com/auraphp/Aura.View/blob/develop-2/config/Common.php)
 
-Edit the `{$PROJECT_PATH}/config/Common.php` file and add a line 
+Edit the `{$PROJECT_PATH}/config/Common.php` file and add a line
 `$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
 in `define()` method.
 
 > Note : The service name definitions are getting changed from `html_helper`
-to `aura/<library>:<service>`. If you are using `2.0.0` then the service name 
+to `aura/<library>:<service>`. If you are using `2.0.0` then the service name
 is `html_helper`. If you are using `dev` version it is `aura/html:helper`.
-And also not to spend more time on the config for different projects you 
+And also not to spend more time on the config for different projects you
 have [https://github.com/friendsofaura/FOA.Html_View_Bundle](https://github.com/friendsofaura/FOA.Html_View_Bundle)
 
 ```php
 <?php
 namespace Aura\Web_Project\_Config;
- 
+
 use Aura\Di\Config;
 use Aura\Di\Container;
 
@@ -76,8 +76,8 @@ class Common extends Config
 }
 ```
 
-Now you can use [tag helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-HELPERS.md), 
-[form helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md) 
+Now you can use [tag helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-HELPERS.md),
+[form helpers](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md)
 and [escaping](https://github.com/auraphp/Aura.Html#escaping) functionalities.
 
 ## Custom Helpers
@@ -88,11 +88,11 @@ There are two steps to adding your own custom helpers:
 
 2. Set a factory for that class into the _HelperLocator_ under a service name.
 
-A helper class needs only to implement the `__invoke()` method.  
-We suggest extending from _AbstractHelper_ to get access to indenting, 
+A helper class needs only to implement the `__invoke()` method.
+We suggest extending from _AbstractHelper_ to get access to indenting,
 escaping, etc., but it's not required.
 
-We are going to create a router helper which can return 
+We are going to create a router helper which can return
 the router object, and from which we can generate
 routes from the already defined routes.
 
@@ -121,8 +121,8 @@ class Router
 }
 ```
 
-Now that we have a helper class, we set a factory for it into the 
-_HelperLocator_ under a service name. 
+Now that we have a helper class, we set a factory for it into the
+_HelperLocator_ under a service name.
 Therein, we create **and return** the helper class.
 
 Edit `{$PROJECT_PATH}/config/Common.php`
@@ -130,7 +130,7 @@ Edit `{$PROJECT_PATH}/config/Common.php`
 ```php
 <?php
 namespace Aura\Web_Project\_Config;
- 
+
 use Aura\Di\Config;
 use Aura\Di\Container;
 
@@ -139,14 +139,14 @@ class Common extends Config
     public function define(Container $di)
     {
         // ...
-        $di->params['App\Html\Helper\Router']['router'] = $di->lazyGet('web_router');
+        $di->params['App\Html\Helper\Router']['router'] = $di->lazyGet('aura/web-kernel:router');
         $di->params['Aura\Html\HelperLocator']['map']['router'] = $di->lazyNew('App\Html\Helper\Router');
     }
     // ...
 }
 ```
 
-The service name in the _HelperLocator_ doubles as a method name. 
+The service name in the _HelperLocator_ doubles as a method name.
 This means we can call the helper via `$this->router()`:
 
 ```php
@@ -154,5 +154,5 @@ This means we can call the helper via `$this->router()`:
 ```
 
 Note that we can use any service name for the helper, although it is generally
-useful to name the service for the helper class, and for a word that 
+useful to name the service for the helper class, and for a word that
 can be called as a method.

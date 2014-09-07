@@ -1,12 +1,12 @@
 # Routing
 
-Configuration of routing and dispatching is done via the project-level config/ 
-class files. If a route needs to be available in every config mode, 
-edit the project-level config/Common.php class file. If it only needs 
-to be available in a specific mode, e.g. dev, then edit the config file 
+Configuration of routing and dispatching is done via the project-level config/
+class files. If a route needs to be available in every config mode,
+edit the project-level config/Common.php class file. If it only needs
+to be available in a specific mode, e.g. dev, then edit the config file
 for that mode (`config/Dev.php`).
 
-The `modify()` method is where we get the router service ('web_router') 
+The `modify()` method is where we get the router service ('aura/web-kernel:router')
 and add routes to the application.
 
 ```php
@@ -26,28 +26,28 @@ class Common extends Config
     public function modify(Container $di)
     {
         // get the router service
-        $router = $di->get('web_router');
+        $router = $di->get('aura/web-kernel:router');
         // ... your application routes go below
     }
 }
 ```
 
-The `web_router` is an object of type _Aura\Router\Router_ . So if you are 
-familiar with [Aura.Router](https://github.com/auraphp/Aura.Router) then 
+The `aura/web-kernel:router` is an object of type _Aura\Router\Router_ . So if you are
+familiar with [Aura.Router](https://github.com/auraphp/Aura.Router) then
 you are done with this chapter, else read on.
 
-Aura framework can act both as a micro framework or full stack framework. 
-If you are using it as a micro framework, you can set a Closure as 
+Aura framework can act both as a micro framework or full stack framework.
+If you are using it as a micro framework, you can set a Closure as
 the action value, else set the same name of the action in the dispatcher.
 Don't worry, we will cover dispatching in next chapter.
 
-> Note: This chapter gives you a basic understanding of the different types of 
+> Note: This chapter gives you a basic understanding of the different types of
 methods available in router.
 
 ## Adding a Route
 
-We will not be showing the whole config file to reduce the space used. 
-This document assumes you are adding the route in the `modify()` method after 
+We will not be showing the whole config file to reduce the space used.
+This document assumes you are adding the route in the `modify()` method after
 getting the router service.
 
 To create a route, call the `add()` method on the _Router_. Named path-info

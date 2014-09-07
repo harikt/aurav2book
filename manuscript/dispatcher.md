@@ -1,24 +1,24 @@
 # Dispatching
 
-Aura web/framework projects can handle different variations of dispatching 
+Aura web/framework projects can handle different variations of dispatching
 with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
 
 * Microframework
 * Modified Micro-Framework Style
 * Full-Stack Style
 
-So if your application starts small and grows, 
-it is easy to modify the application routes acting as a micro framework 
+So if your application starts small and grows,
+it is easy to modify the application routes acting as a micro framework
 to a full-stack style.
 
 > N.b.: You can skip to your favourite usage.
 
 ## Microframework
 
-The following is an example of a micro-framework style route, where the 
-action logic is embedded in the route params. In the `modify()` 
-config method, we retrieve the shared `web_request` and `web_response` 
-services, along with the `web_router` service. We then add a route names 
+The following is an example of a micro-framework style route, where the
+action logic is embedded in the route params. In the `modify()`
+config method, we retrieve the shared `aura/web-kernel:request` and `aura/web-kernel:response`
+services, along with the `aura/web-kernel:router` service. We then add a route names
 `blog.read` and embed the action code as a closure.
 
 ```php
@@ -34,10 +34,10 @@ class Common extends Config
 
     public function modify(Container $di)
     {
-        $request = $di->get('web_request');
-        $response = $di->get('web_response');
+        $request = $di->get('aura/web-kernel:request');
+        $response = $di->get('aura/web-kernel:response');
 
-        $router = $di->get('web_router');
+        $router = $di->get('aura/web-kernel:router');
         $router
             ->add('blog.read', '/blog/read/{id}')
             ->addValues(array(
@@ -56,11 +56,11 @@ class Common extends Config
 
 ## Modified Micro-Framework Style
 
-We can modify the above example to put the action logic in the 
+We can modify the above example to put the action logic in the
 dispatcher instead of the route itself.
 
-Extract the action closure to the dispatcher under the name `blog.read`. 
-Then, in the route, use a `action` value that matches the name in 
+Extract the action closure to the dispatcher under the name `blog.read`.
+Then, in the route, use a `action` value that matches the name in
 the dispatcher.
 
 ```php
@@ -76,10 +76,10 @@ class Common extends Config
 
     public function modify(Container $di)
     {
-        $request = $di->get('web_request');
-        $response = $di->get('web_response');
+        $request = $di->get('aura/web-kernel:request');
+        $response = $di->get('aura/web-kernel:response');
 
-        $dispatcher = $di->get('web_dispatcher');
+        $dispatcher = $di->get('aura/web-kernel:dispatcher');
         $dispatcher->setObject(
             'blog.read',
             function ($id) use ($request, $response) {
@@ -90,7 +90,7 @@ class Common extends Config
             }
         );
 
-        $router = $di->get('web_router');
+        $router = $di->get('aura/web-kernel:router');
         $router
             ->add('blog.read', '/blog/read/{id}')
             ->addValues(array(
@@ -139,13 +139,13 @@ class BlogRead
 
 Next, tell the project how to build the _BlogRead_ through the DI
 _Container_. Edit the project `config/Common.php` file to configure the
-_Container_ to pass the `web_request` and `web_response` service objects to 
+_Container_ to pass the `aura/web-kernel:request` and `aura/web-kernel:response` service objects to
 the _BlogRead_ constructor.
 
 ```php
 <?php
 namespace Aura\Web_Project\_Config;
- 
+
 use Aura\Di\Config;
 use Aura\Di\Container;
 
@@ -156,8 +156,8 @@ class Common extends Config
         // ...
 
         $di->params['App\Actions\BlogRead'] = array(
-            'request' => $di->lazyGet('web_request'),
-            'response' => $di->lazyGet('web_response'),
+            'request' => $di->lazyGet('aura/web-kernel:request'),
+            'response' => $di->lazyGet('aura/web-kernel:response'),
         );
     }
 
@@ -182,7 +182,7 @@ class Common extends Config
     public function modify(Container $di)
     {
         // ...
-        $dispatcher = $di->get('web_dispatcher');
+        $dispatcher = $di->get('aura/web-kernel:dispatcher');
         $dispatcher->setObject(
             'blog.read',
             $di->lazyNew('App\Actions\BlogRead')
@@ -209,7 +209,7 @@ class Common extends Config
     public function modify(Container $di)
     {
         // ...
-        $router = $di->get('web_router');
+        $router = $di->get('aura/web-kernel:router');
         $router
             ->add('blog.read', '/blog/read/{id}')
             ->addValues(array(
