@@ -9,4 +9,6 @@ helpers.md
 adr.md
 forms.md
 validation.md
+session.md
+cli.md
 setup.md
