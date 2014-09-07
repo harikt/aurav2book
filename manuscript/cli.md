@@ -1,4 +1,4 @@
-# Command line aka cli/console
+# Command line / cli / console
 
 In this chapter we assume you have installed either `aura/framework-project`
 or `aura/cli-project`.
