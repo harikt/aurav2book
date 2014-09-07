@@ -12,7 +12,7 @@ if you looking for standalone usage.
 
 Below is a list of few examples taken from the `Aura.Cli` readme.
 
-## Context Discovery
+### Context Discovery
 
 The Context object provides information about the command line environment,
 including any option flags passed via the command line.
@@ -54,7 +54,7 @@ $c   = $getopt->get('-c', 'default value');
 
 [Read more](https://github.com/auraphp/Aura.Cli#getopt-support)
 
-## Positional Arguments
+### Positional Arguments
 
 ```php
 <?php
@@ -72,7 +72,7 @@ $val4 = $getopt->get(4); // arg4
 
 [Read more](https://github.com/auraphp/Aura.Cli#positional-arguments)
 
-## Standard Input/Output Streams
+### Standard Input/Output Streams
 
 The Stdio object allows you to work with standard input/output streams.
 
@@ -88,7 +88,7 @@ $stdio->errln('Output will stay red until a formatting change.<<reset>>');
 
 [Read more](https://github.com/auraphp/Aura.Cli#standard-inputoutput-streams)
 
-## Writing Command Help
+### Writing Command Help
 
 ```php
 <?php
@@ -130,18 +130,18 @@ of an Aura project. Please be familiar with
 You should also familiarize yourself with [Aura.Dispatcher](#leanpub-auto-dispatching),
 as well as the [Aura.Cli](https://github.com/auraphp/Aura.Cli) _Context_, _Stdio_, and _Status_ objects.
 
-### Project Configuration
+## Project Configuration
 
 Every Aura project is configured the same way. Please see the [shared configuration docs](#leanpub-auto-configuration) for more information.
 
-### Logging
+## Logging
 
 The project automatically logs to `{$PROJECT_PATH}/tmp/log/{$mode}.log`.
 If you want to change the logging behaviors for a particular config mode,
 edit the related config file (e.g., `config/Dev.php`) file to modify
 the `aura/project-kernel:logger` service.
 
-### Commands
+## Commands
 
 We configure commands via the project-level `config/` class files.
 If a command needs to be available in every config mode, edit the
@@ -151,7 +151,7 @@ file for that mode.
 
 Here are two different styles of command definition.
 
-#### Micro-Framework Style
+## Micro-Framework Style
 
 The following is an example of a command where the logic is embedded in the dispatcher, using the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` services along with standard exit codes. (The dispatcher object name doubles as the command name.)
 
@@ -194,7 +194,7 @@ You can now run the command to see its output.
 
 (If you do not pass an ID argument, you will see an error message.)
 
-#### Full-Stack Style
+## Full-Stack Style
 
 You can migrate from a micro-controller style to a full-stack style (or start
 with full-stack style in the first place).
