@@ -3,7 +3,8 @@ di.md
 configuration.md
 router.md
 dispatcher.md
-request-response.md
+request.md
+response.md
 view.md
 helpers.md
 adr.md
