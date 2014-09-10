@@ -1,10 +1,10 @@
 introduction.md
-di.md
 configuration.md
 router.md
 dispatcher.md
 request.md
 response.md
+di.md
 view.md
 helpers.md
 adr.md

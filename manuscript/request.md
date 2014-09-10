@@ -78,25 +78,6 @@ The `$request->client` object has these methods:
 - `isMobile()` returns true if the `User-Agent` header matches one of a list
   of mobile user agents (otherwise false).
 
-To add to the list of recognized user agents, set up the _WebFactory_ with
-them first, then create the _Request_ object afterwards.
-
-```php
-<?php
-$web_factory->setMobileAgents(array(
-    'NewMobileAgent',
-    'AnotherNewMobile',
-));
-
-$web_factory->setCrawlerAgents(array(
-    'NewCrawlerAgent',
-    'AnotherNewCrawler',
-));
-
-$request = $web_factory->newRequest();
-?>
-```
-
 ## Content
 
 The `$request->content` object has these methods:
@@ -112,22 +93,6 @@ If the request specified a content type of `application/json`,
 the `get()` method will automatically decode the body with `json_decode()`.
 Likewise, if the content type is `application/x-www-form-urlencoded`, the
 `get()` method will automatically decode the body with `parse_str()`.
-
-If you want to add or change content decoders, set up the _WebFactory_ with
-them first, then create the _Request_ object afterwards.
-
-```php
-<?php
-// content-type => callable
-$web_factory->setDecoders(array(
-    'application/x-special-content-type' => function ($body) {
-        // decoding logic
-    },
-));
-
-$request = $web_factory->newRequest();
-?>
-```
 
 ## Headers
 
@@ -183,21 +148,7 @@ POST. By default, the _Method_ object honors the `_method` form field.
 // a POST with the field '_method' will use the _method value instead of POST
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_POST['_method'] = 'PUT';
-$request = $web_factory->newRequest();
 echo $request->method->get(); // PUT
-?>
-```
-
-To set the form field used to indicate a custom HTTP method on a POST, set up
-the _WebFactory_ with it first, then create the _Request_ object.
-
-```php
-<?php
-$_SERVER['REQUEST_METHOD'] = 'POST';
-$_POST['_http_method_override'] = 'DELETE';
-$web_factory->setMethodField('_http_method_override');
-$request = $web_factory->newRequest();
-echo $request->method->get(); // DELETE
 ?>
 ```
 
@@ -222,9 +173,6 @@ highest-quality match.
 // assume the request indicates these Accept values (XML is best, then CSV,
 // then anything else)
 $_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
-
-// create the request object
-$request = $web_factory->newRequest();
 
 // assume our application has `application/json` and `text/csv` available
 // as media types, in order of highest-to-lowest preference for delivery
@@ -254,9 +202,6 @@ $_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
 // assume also that the request URI explicitly notes a .json file extension
 $_SERVER['REQUEST_URI'] = '/path/to/entity.json';
 
-// create the request object
-$request = $web_factory->newRequest();
-
 // assume our application has `application/json` and `text/csv` available
 // as media types, in order of highest-to-lowest preference for delivery
 $available = array(
@@ -272,20 +217,6 @@ echo $media->available->getValue(); // application/json
 ?>
 ```
 
-See the _Accept\Media_ class file for the list of what file extensions map to
-what media types. To set your own mappings, set up the _WebFactory_ object
-first, then create the _Request_ object:
-
-```php
-<?php
-$web_factory->setTypes(array(
-    '.foo' => 'application/x-foo-content-type',
-));
-
-$request = $web_factory->newRequest();
-?>
-```
-
 If the acceptable values indicate additional parameters, you can match on those as well:
 
 ```php
@@ -293,9 +224,6 @@ If the acceptable values indicate additional parameters, you can match on those 
 // assume the request indicates these Accept values (XML is best, then CSV,
 // then anything else)
 $_SERVER['HTTP_ACCEPT'] = 'text/html;level=1;q=0.5,text/html;level=3';
-
-// create the request object
-$request = $web_factory->newRequest();
 
 // assume our application has `application/json` and `text/csv` available
 // as media types, in order of highest-to-lowest preference for delivery
