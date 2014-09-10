@@ -80,20 +80,20 @@ class Common extends Config
 
 Use a helper by calling it as a method on the _HelperLocator_. The available helpers are:
 
-- [a](#a) / anchor
-- [base](#base)
-- [img](#img) / image
-- [label](#label)
-- [links](#links)
-- [metas](#metas)
-- [ol](#ol)
-- [scripts](#scripts) / scriptsFoot
-- [ul](#ul)
-- [styles](#styles)
-- [tag](#tag)
-- [title](#title)
+- [a](#leanpub-auto-a) / anchor
+- [base](#leanpub-auto-base)
+- [img](#leanpub-auto-img) / image
+- [label](#leanpub-auto-label)
+- [links](#leanpub-auto-links)
+- [metas](#leanpub-auto-metas)
+- [ol](#leanpub-auto-ol)
+- [scripts](#leanpub-auto-scripts) / scriptsFoot
+- [ul](#leanpub-auto-ul)
+- [styles](#leanpub-auto-styles)
+- [tag](#leanpub-auto-tag)
+- [title](#leanpub-auto-title)
 
-There is also a series of [helpers for forms](#leanpub-).
+There is also a series of [helpers for forms](#leanpub-auto-leanpub-).
 
 ## a
 
@@ -520,31 +520,31 @@ The array is used so that other libraries can generate form element descriptions
 
 The available input element `type` values are:
 
-- [button](#button)
-- [checkbok](#checkbok)
-- [color](#color)
-- [date](#date)
-- [datetime](#datetime)
-- [datetime-local](#datetime-local)
-- [email](#email)
-- [file](#file)
-- [hidden](#hidden)
-- [image](#image)
-- [month](#month)
-- [number](#number)
-- [password](#password)
-- [radio](#radio)
-- [range](#range)
-- [reset](#reset)
-- [search](#search)
-- [select](#select) (including options)
-- [submit](#submit)
-- [tel](#tel)
-- [text](#text)
-- [textarea](#textarea)
-- [time](#time)
-- [url](#url)
-- [week](#week)
+- [button](#leanpub-auto-button)
+- [checkbok](#leanpub-auto-checkbok)
+- [color](#leanpub-auto-color)
+- [date](#leanpub-auto-date)
+- [datetime](#leanpub-auto-datetime)
+- [datetime-local](#leanpub-auto-datetime-local)
+- [email](#leanpub-auto-email)
+- [file](#leanpub-auto-file)
+- [hidden](#leanpub-auto-hidden)
+- [image](#leanpub-auto-image)
+- [month](#leanpub-auto-month)
+- [number](#leanpub-auto-number)
+- [password](#leanpub-auto-password)
+- [radio](#leanpub-auto-radio)
+- [range](#leanpub-auto-range)
+- [reset](#leanpub-auto-reset)
+- [search](#leanpub-auto-search)
+- [select](#leanpub-auto-select) (including options)
+- [submit](#leanpub-auto-submit)
+- [tel](#leanpub-auto-tel)
+- [text](#leanpub-auto-text)
+- [textarea](#leanpub-auto-textarea)
+- [time](#leanpub-auto-time)
+- [url](#leanpub-auto-url)
+- [week](#leanpub-auto-week)
 
 ### button
 
