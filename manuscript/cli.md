@@ -16,7 +16,7 @@ The _Context_ object provides information about the command line environment,
 including any option flags passed via the command line. (This is the command
 line equivalent of a web request object.)
 
-[Please have a look at services](#lean-pub-services)
+[Please have a look at services](#leanpub-auto-services)
 
 You can access the `$_ENV`, `$_SERVER`, and `$argv` values with the `$env`,
 `$server`, and `$argv` property objects, respectively. (Note that these
@@ -203,7 +203,7 @@ $a    = $getopt->get('-a'); // 1
 The _Stdio_ object allows you to work with standard input/output streams.
 (This is the command line equivalent of a web response object.)
 
-[Please have a look at services](#lean-pub-services)
+[Please have a look at services](#leanpub-auto-services)
 
 It defaults to using `php://stdin`, `php://stdout`, and `php://stderr`, but
 you can pass whatever stream names you like as parameters to the `newStdio()`

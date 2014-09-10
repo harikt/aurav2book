@@ -95,7 +95,7 @@ Use a helper by calling it as a method on the _HelperLocator_. The available hel
 
 There is also a series of [helpers for forms](#leanpub-auto-aurahtml-form-helpers).
 
-## a
+### a
 
 Helper for `<a>` tags.
 
@@ -110,7 +110,7 @@ echo $this->a(
 <a href="http://auraphp.com" id="aura-link">Aura Project</a>
 ```
 
-## base
+### base
 
 Helper for `<base>` tags.
 
@@ -123,7 +123,7 @@ echo $this->base(
 <base href="/base" />
 ```
 
-## img
+### img
 
 Helper for `<img>` tags.
 
@@ -138,7 +138,7 @@ echo $this->img(
 
 ```
 
-## label
+### label
 
 Helper for `<label>` tags.
 
@@ -171,7 +171,7 @@ echo $this->label(' (Foo)')
 <label><input type="text" name="foo" value="" /> (Foo)</label>
 ```
 
-## links
+### links
 
 Helper for a set of generic `<link>` tags. Build a set of links with `add()` then output them all at once.
 
@@ -210,7 +210,7 @@ echo $this->links()
 <link rel="prev" href="/path/to/prev" />
 <link ref="next" href="/path/to/next" />
 
-## metas
+### metas
 
 Helper for a set of `<meta>` tags. Build a set of metas with `add*()` then output them all at once.
 
@@ -250,7 +250,7 @@ echo $this->metas()
 <meta name="foo" content="bar">
 ```
 
-## ol
+### ol
 
 Helper for `<ol>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
@@ -300,7 +300,7 @@ echo $this->ol();
 </ol>
 ```
 
-## scripts
+### scripts
 
 Helper for a set of `<script>` tags. Build a set of script links, then output them all at once.
 
@@ -334,7 +334,7 @@ $this->scripts->addCond(
 
 The `scriptsFoot()` helper works the same way, but is intended for placing a separate set of scripts at the end of the HTML body.
 
-## ul
+### ul
 
 Helper for `<ul>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
@@ -384,7 +384,7 @@ echo $this->ul();
 </ul>
 ```
 
-## styles
+### styles
 
 Helper for a set of `<link>` tags for stylesheets. Build a set of style links, then output them all at once. As with the `script` helper, you can optionally set the priority order for each stylesheet.
 
@@ -424,7 +424,7 @@ echo $this->styles();
 ?>
 ```
 
-## tag
+### tag
 
 A generic tag helper.
 
@@ -439,7 +439,7 @@ echo $this->tag('/div');
 <div id="foo"></div>
 ```
 
-## title
+### title
 
 Helper for the `<title>` tag.
 
