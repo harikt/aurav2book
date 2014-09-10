@@ -116,4 +116,4 @@ In this example we are using a Closure, which get the di container and use
 it as a service, get the shared web response and set the content.
 
 Don't worry too much about dependency injection and dependency injection
-container. We will be talking more details in the next Chapter.
+container. We will be talking more details in the coming chapter.

@@ -315,7 +315,8 @@ $this->setSection('local-nav', $this->render('_local-nav.php'));
 
 ## Using Helpers
 
-The _ViewFactory_ instantiates the _View_ with an empty _HelperRegistry_ to manage helpers. We can register closures or other invokable objects as helpers through the _HelperRegistry_. We can then call these helpers as if they are methods on the _View_.
+We can register closures or other invokable objects as helpers through
+the _HelperRegistry_. We can then call these helpers as if they are methods on the _View_.
 
 ```php
 <?php
@@ -357,15 +358,8 @@ $view = $view_factory->newInstance($helpers);
 ?>
 ```
 
-For a comprehensive set of HTML helpers, including form and input helpers, please consider the [Aura.Html](https://github.com/Aura.Html) package and its _HelperLocator_ as an alternative to the _HelperRegistry_ in this package. You can pass it to the _ViewFactory_ like so:
-
-```php
-<?php
-$helpers_factory = new Aura\Html\HelperLocatorFactory;
-$helpers = $helpers_factory->newInstance();
-$view = $view_factory->newInstance($helpers);
-?>
-```
+In the next chapter we will cover the comprehensive set of HTML helpers,
+including form and input helpers.
 
 ## Rendering a Two-Step View
 

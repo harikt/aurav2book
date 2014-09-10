@@ -172,13 +172,7 @@ An example is given below :
 echo $this->input($this->contact_form->get('first_name'));
 ```
 
-Read more [on form helpers here](https://github.com/auraphp/Aura.Html/blob/develop-2/README-FORMS.md).
+Read more [on form helpers here](#leanpub-auto-aurahtml-form-helpers).
 
 In the session chapter we will learn how to set flash message when the
 form submission was success.
-
-## Working example
-
-If you have purchased a copy of the book from leanpub you will get the
-code examples zip. Checkout the `forms` branch to see
-the code example.

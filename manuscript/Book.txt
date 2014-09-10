@@ -7,9 +7,10 @@ response.md
 di.md
 view.md
 helpers.md
-adr.md
 forms.md
 validation.md
+intl.md
 session.md
+adr.md
 cli.md
 setup.md
