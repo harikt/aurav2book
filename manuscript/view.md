@@ -146,7 +146,7 @@ For a good set of HTML escapers, we will use [Aura.Html](#leanpub-auto-view-help
 
 ## Registering View Templates
 
-Now that we have a _View_, we need to add named templates to its view template registry. These are typically PHP file paths, but [templates can also be closures](#closures-as-templates).  For example:
+Now that we have a _View_, we need to add named templates to its view template registry. These are typically PHP file paths, but [templates can also be closures](#leanpub-auto-closures-as-templates).  For example:
 
 ```php
 <?php

@@ -93,7 +93,7 @@ Use a helper by calling it as a method on the _HelperLocator_. The available hel
 - [tag](#leanpub-auto-tag)
 - [title](#leanpub-auto-title)
 
-There is also a series of [helpers for forms](#leanpub-auto-leanpub-).
+There is also a series of [helpers for forms](#leanpub-auto-aurahtml-form-helpers).
 
 ## a
 
@@ -521,7 +521,7 @@ The array is used so that other libraries can generate form element descriptions
 The available input element `type` values are:
 
 - [button](#leanpub-auto-button)
-- [checkbok](#leanpub-auto-checkbok)
+- [checkbox](#leanpub-auto-checkbox)
 - [color](#leanpub-auto-color)
 - [date](#leanpub-auto-date)
 - [datetime](#leanpub-auto-datetime)

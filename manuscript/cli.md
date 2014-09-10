@@ -16,17 +16,7 @@ The _Context_ object provides information about the command line environment,
 including any option flags passed via the command line. (This is the command
 line equivalent of a web request object.)
 
-Instantiate a _Context_ object using the _CliFactory_; pass it a copy of
-`$GLOBALS`.
-
-```php
-<?php
-use Aura\Cli\CliFactory;
-
-$cli_factory = new CliFactory;
-$context = $cli_factory->newContext($GLOBALS);
-?>
-```
+[Please have a look at services](#lean-pub-services)
 
 You can access the `$_ENV`, `$_SERVER`, and `$argv` values with the `$env`,
 `$server`, and `$argv` property objects, respectively. (Note that these
@@ -89,7 +79,7 @@ $getopt = $context->getopt($options);
 > N.b.: When we say "required" here, it means "the option, when present,
 > must have a parameter."  It does *not* mean "the option must be present."
 > These are options, after all. If a particular value *must* be passed,
-> consider using [positional arguments](#positional-arguments) instead.
+> consider using [positional arguments](#leanpub-auto-positional-arguments) instead.
 
 Use the `get()` method on the returned _GetoptValues_ object to retrieve the
 option values. You can provide an alternative default value for when the
@@ -213,16 +203,7 @@ $a    = $getopt->get('-a'); // 1
 The _Stdio_ object allows you to work with standard input/output streams.
 (This is the command line equivalent of a web response object.)
 
-Instantiate a _Stdio_ object using the _CliFactory_.
-
-```php
-<?php
-use Aura\Cli\CliFactory;
-
-$cli_factory = new CliFactory;
-$stdio = $cli_factory->newStdio();
-?>
-```
+[Please have a look at services](#lean-pub-services)
 
 It defaults to using `php://stdin`, `php://stdout`, and `php://stderr`, but
 you can pass whatever stream names you like as parameters to the `newStdio()`
@@ -242,7 +223,7 @@ The _Stdio_ object methods are ...
 
 You can use special formatting markup in the output and error strings to set
 text color, text weight, background color, and other display characteristics.
-See the [formatter cheat sheet](#formatter-cheat-sheet) below.
+See the [formatter cheat sheet](#leanpub-auto-formatter-cheat-sheet) below.
 
 ```php
 <?php
