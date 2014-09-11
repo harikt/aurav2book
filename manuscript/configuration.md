@@ -1,41 +1,41 @@
 # Configuration
 
-Although configuration is a project-level concern, each Aura kernel and 
+Although configuration is a project-level concern, each Aura kernel and
 project handles it in the same way.
 
 > N.b.: Read this chapter carefully.
 
-> N.b.: The examples throughout this document are for _Aura\Web_Project_; 
-replace that with _Aura\Cli_Project_ or _Aura\Framework_Project_ as needed.
+> N.b.: The examples throughout this document are for _Aura\\Web_Project_;
+replace that with _Aura\\Cli_Project_ or _Aura\\Framework_Project_ as needed.
 
 ## Setting The Config Mode
 
-Set the configuration mode using `$_ENV['AURA_CONFIG_MODE']`, 
-either via a server variable or the project-level `config/_env.php` file. 
-Each Aura project comes with `dev` (local development), `test` 
+Set the configuration mode using `$_ENV['AURA_CONFIG_MODE']`,
+either via a server variable or the project-level `config/_env.php` file.
+Each Aura project comes with `dev` (local development), `test`
 (shared testing/staging), and `prod` (production) modes pre-defined.
 
 ## Config File Location
 
-Project-level configuration files are located in the project-level 
-`config/` directory. Each configuration file is a class that extends 
-_Aura\Di\Config_, and represents a configuration mode. Each 
+Project-level configuration files are located in the project-level
+`config/` directory. Each configuration file is a class that extends
+_Aura\\Di\\Config_, and represents a configuration mode. Each
 configuration class has two methods:
 
 - `define()`, which allows you to define params, setters, and services in the project _Container_; and
 
-- `modify()`, which allows you to pull objects out of the _Container_ 
-for programmatic modification. (This happens after the _Container_ is 
+- `modify()`, which allows you to pull objects out of the _Container_
+for programmatic modification. (This happens after the _Container_ is
 locked, so you cannot add new services or change params and setters here.)
 
-The two-stage configuration system loads all the configuration classes 
-in order by library, kernel, and project, then runs all the `define()` 
+The two-stage configuration system loads all the configuration classes
+in order by library, kernel, and project, then runs all the `define()`
 methods, locks the container, and finally runs all the `modify()` methods.
 
 ## Mapping Config Modes To Classes
 
-The config modes are mapped to their related config class files via the 
-project-level `composer.json` file in the `extra:aura:config` block. 
+The config modes are mapped to their related config class files via the
+project-level `composer.json` file in the `extra:aura:config` block.
 The entry key is the config mode, and the entry value is the class to use for that mode.
 
 ```json
@@ -64,16 +64,16 @@ The entry key is the config mode, and the entry value is the class to use for th
 
 Config classes are autoloaded via a PSR-4 entry for that project namespace.
 
-The "common" config class is always loaded regardless of the actual 
-config mode.  For example, if the config mode is `dev`, first the 
+The "common" config class is always loaded regardless of the actual
+config mode.  For example, if the config mode is `dev`, first the
 _Common_ class is loaded, and then the _Dev_ class.
 
 
 ## Changing Config Settings
 
-First, open the config file for the related config mode. To change 
-configuration params, setters, and services, edit the `define()` method. 
-To programmatically change a service after all definitions are complete, 
+First, open the config file for the related config mode. To change
+configuration params, setters, and services, edit the `define()` method.
+To programmatically change a service after all definitions are complete,
 edit the `modify()` method.
 
 ## Adding A Config Mode
@@ -104,7 +104,7 @@ class Qa extends Config
 ?>
 ```
 
-Next, edit the project-level `composer.json` file to add the new config 
+Next, edit the project-level `composer.json` file to add the new config
 mode with its related class:
 
 ```json
@@ -124,5 +124,5 @@ mode with its related class:
 }
 ```
 
-Finally, run `composer update` so that Composer makes the necessary changes 
+Finally, run `composer update` so that Composer makes the necessary changes
 to the autoloader system.
