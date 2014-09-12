@@ -1,4 +1,4 @@
-# Configuration
+# Configuration {#configuration}
 
 Although configuration is a project-level concern, each Aura kernel and
 project handles it in the same way.

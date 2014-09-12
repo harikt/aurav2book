@@ -16,7 +16,7 @@ The _Context_ object provides information about the command line environment,
 including any option flags passed via the command line. (This is the command
 line equivalent of a web request object.)
 
-[Please have a look at services](#leanpub-auto-services)
+[Please have a look at services](#services)
 
 You can access the `$_ENV`, `$_SERVER`, and `$argv` values with the `$env`,
 `$server`, and `$argv` property objects, respectively. (Note that these
@@ -79,7 +79,7 @@ $getopt = $context->getopt($options);
 > N.b.: When we say "required" here, it means "the option, when present,
 > must have a parameter."  It does *not* mean "the option must be present."
 > These are options, after all. If a particular value *must* be passed,
-> consider using [positional arguments](#leanpub-auto-positional-arguments) instead.
+> consider using [positional arguments](#positional-arguments) instead.
 
 Use the `get()` method on the returned _GetoptValues_ object to retrieve the
 option values. You can provide an alternative default value for when the
@@ -153,7 +153,7 @@ if ($getopt->hasErrors()) {
 ?>
 ```
 
-#### Positional Arguments
+#### Positional Arguments {#positional-arguments}
 
 To get the positional arguments passed to the command line, use the `get()`
 method and the argument position number:
@@ -203,7 +203,7 @@ $a    = $getopt->get('-a'); // 1
 The _Stdio_ object allows you to work with standard input/output streams.
 (This is the command line equivalent of a web response object.)
 
-[Please have a look at services](#leanpub-auto-services)
+[Please have a look at services](#services)
 
 It defaults to using `php://stdin`, `php://stdout`, and `php://stderr`, but
 you can pass whatever stream names you like as parameters to the `newStdio()`
@@ -223,7 +223,7 @@ The _Stdio_ object methods are ...
 
 You can use special formatting markup in the output and error strings to set
 text color, text weight, background color, and other display characteristics.
-See the [formatter cheat sheet](#leanpub-auto-formatter-cheat-sheet) below.
+See the [formatter cheat sheet](#formatter-cheat-sheet) below.
 
 ```php
 <?php
@@ -359,7 +359,7 @@ OPTIONS
         The --bar option description.
 ```
 
-### Formatter Cheat Sheet
+### Formatter Cheat Sheet {#formatter-cheat-sheet}
 
 On POSIX terminals, `<<markup>>` strings will change the display
 characteristics. Note that these are not HTML tags; they will be converted
@@ -395,7 +395,7 @@ space-separated markup codes between the double angle-brackets as you like.
 For example, to set bold white text on a red background, add `<<bold white redbg>>`
 into your output or error string. Reset back to normal with `<<reset>>`.
 
-## Services
+## Services {#services}
 
 Aura.Cli_Kernel defines the following service objects in the _Container_:
 
@@ -409,14 +409,14 @@ Aura.Cli_Kernel defines the following service objects in the _Container_:
 
 The dependency injection _Container_ is absolutely central to the operation
 of an Aura project. Please be familiar with
-[the DI docs](#leanpub-auto-dependency-injection) before continuing.
+[the DI docs](#dependency-injection) before continuing.
 
-You should also familiarize yourself with [Aura.Dispatcher](#leanpub-auto-dispatching),
+You should also familiarize yourself with [Aura.Dispatcher](#dispatching),
 as well as the Aura.Cli _Context_, _Stdio_, and _Status_ objects.
 
 ## Project Configuration
 
-Every Aura project is configured the same way. Please see the [shared configuration docs](#leanpub-auto-configuration) for more information.
+Every Aura project is configured the same way. Please see the [shared configuration docs](#configuration) for more information.
 
 ## Logging
 

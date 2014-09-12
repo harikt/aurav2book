@@ -1,4 +1,4 @@
-# View Helpers
+# View Helpers {#view-helpers}
 
 The [Aura.Html](https://github.com/auraphp/Aura.Html) package has been
 extracted from Aura.View (v1), and can now be used in any
@@ -206,9 +206,9 @@ echo $this->links()
         'href' => '/path/to/next',
     ));
 ?>
-```
 <link rel="prev" href="/path/to/prev" />
 <link ref="next" href="/path/to/next" />
+```
 
 ### metas {#metas}
 

@@ -142,11 +142,11 @@ Security-minded observers will note that all the examples in this document use m
 
 When you generate output via templates, you **must** escape it appropriately for security purposes. This means that HTML templates should use HTML escaping, CSS templates should use CSS escaping, XML templates should use XML escaping, PDF templates should use PDF escaping, RTF templates should use RTF escaping, and so on.
 
-For a good set of HTML escapers, we will use [Aura.Html](#leanpub-auto-view-helpers).
+For a good set of HTML escapers, we will use [Aura.Html](#view-helpers).
 
 ## Registering View Templates
 
-Now that we have a _View_, we need to add named templates to its view template registry. These are typically PHP file paths, but [templates can also be closures](#leanpub-auto-closures-as-templates).  For example:
+Now that we have a _View_, we need to add named templates to its view template registry. These are typically PHP file paths, but [templates can also be closures](#closures-as-templates).  For example:
 
 ```php
 <?php
@@ -198,8 +198,8 @@ $view->setData(array(
 ?>
 ```
 
-> N.b.: Recall that `$this` in the template logic refers to the _View_ object,
-> so that data assigned to the _View_ can be accessed as properties on `$this`.
+I> N.b.: Recall that `$this` in the template logic refers to the _View_ object,
+I> so that data assigned to the _View_ can be accessed as properties on `$this`.
 
 The `setData()` method will overwrite all existing data in the _View_ object. The `addData()` method, on the other hand, will merge with existing data in the _View_ object.
 
@@ -412,7 +412,7 @@ The view template and the layout template both execute inside the same _View_ ob
 
 - All section bodies are shared between the view and the layout. A section that is captured from the view template can therefore be used by the layout template.
 
-## Closures As Templates
+## Closures As Templates {#closures-as-templates}
 
 The view and layout registries accept closures as templates. For example, these are closure-based equivlents of the `browse.php` and `_item.php` template files above:
 

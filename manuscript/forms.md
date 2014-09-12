@@ -172,7 +172,7 @@ An example is given below :
 echo $this->input($this->contact_form->get('first_name'));
 ```
 
-Read more [on form helpers here](#leanpub-auto-aurahtml-form-helpers).
+Read more [on form helpers here](#aurahtml-form-helpers).
 
 In the session chapter we will learn how to set flash message when the
 form submission was success.

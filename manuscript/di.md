@@ -1,4 +1,4 @@
-# Dependency Injection
+# Dependency Injection {#dependency-injection}
 
 Aura.Di is a dependency injection container system with the following features:
 

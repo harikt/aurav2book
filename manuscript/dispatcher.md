@@ -1,4 +1,4 @@
-# Dispatching
+# Dispatching {#dispatching}
 
 Aura web/framework projects can handle different variations of dispatching
 with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
