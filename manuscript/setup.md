@@ -1,4 +1,4 @@
-# Setting up your virtual host
+# Setting up your virtual host {#setting-up-your-virtual-host}
 
 ## Apache
 

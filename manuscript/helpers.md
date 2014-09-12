@@ -52,7 +52,7 @@ Edit the `{$PROJECT_PATH}/config/Common.php` file and add a line
 `$di->params['Aura\View\View']['helpers'] = $di->lazyGet('html_helper');`
 in `define()` method.
 
-> Note : The service name definitions are getting changed from `html_helper`
+W> Note : The service name definitions are getting changed from `html_helper`
 to `aura/<library>:<service>`. If you are using `2.0.0` then the service name
 is `html_helper`. If you are using `dev` version it is `aura/html:helper`.
 And also not to spend more time on the config for different projects you
@@ -80,22 +80,22 @@ class Common extends Config
 
 Use a helper by calling it as a method on the _HelperLocator_. The available helpers are:
 
-- [a](#leanpub-auto-a) / anchor
-- [base](#leanpub-auto-base)
-- [img](#leanpub-auto-img) / image
-- [label](#leanpub-auto-label)
-- [links](#leanpub-auto-links)
-- [metas](#leanpub-auto-metas)
-- [ol](#leanpub-auto-ol)
-- [scripts](#leanpub-auto-scripts) / scriptsFoot
-- [ul](#leanpub-auto-ul)
-- [styles](#leanpub-auto-styles)
-- [tag](#leanpub-auto-tag)
-- [title](#leanpub-auto-title)
+- [a/anchor](#a)
+- [base](#base)
+- [img/image](#img)
+- [label](#label)
+- [links](#links)
+- [metas](#metas)
+- [ol](#ol)
+- [scripts / scriptsfoot](#scripts)
+- [ul](#ul)
+- [styles](#styles)
+- [tag](#tag)
+- [title](#title)
 
-There is also a series of [helpers for forms](#leanpub-auto-aurahtml-form-helpers).
+There is also a series of [helpers for forms](#aurahtml-form-helpers).
 
-### a
+### a {#a}
 
 Helper for `<a>` tags.
 
@@ -110,7 +110,7 @@ echo $this->a(
 <a href="http://auraphp.com" id="aura-link">Aura Project</a>
 ```
 
-### base
+### base {#base}
 
 Helper for `<base>` tags.
 
@@ -123,7 +123,7 @@ echo $this->base(
 <base href="/base" />
 ```
 
-### img
+### img {#img}
 
 Helper for `<img>` tags.
 
@@ -138,7 +138,7 @@ echo $this->img(
 
 ```
 
-### label
+### label {#label}
 
 Helper for `<label>` tags.
 
@@ -171,7 +171,7 @@ echo $this->label(' (Foo)')
 <label><input type="text" name="foo" value="" /> (Foo)</label>
 ```
 
-### links
+### links {#links}
 
 Helper for a set of generic `<link>` tags. Build a set of links with `add()` then output them all at once.
 
@@ -210,7 +210,7 @@ echo $this->links()
 <link rel="prev" href="/path/to/prev" />
 <link ref="next" href="/path/to/next" />
 
-### metas
+### metas {#metas}
 
 Helper for a set of `<meta>` tags. Build a set of metas with `add*()` then output them all at once.
 
@@ -250,7 +250,7 @@ echo $this->metas()
 <meta name="foo" content="bar">
 ```
 
-### ol
+### ol {#ol}
 
 Helper for `<ol>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
@@ -300,7 +300,7 @@ echo $this->ol();
 </ol>
 ```
 
-### scripts
+### scripts {#scripts}
 
 Helper for a set of `<script>` tags. Build a set of script links, then output them all at once.
 
@@ -334,7 +334,7 @@ $this->scripts->addCond(
 
 The `scriptsFoot()` helper works the same way, but is intended for placing a separate set of scripts at the end of the HTML body.
 
-### ul
+### ul {#ul}
 
 Helper for `<ul>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
@@ -384,7 +384,7 @@ echo $this->ul();
 </ul>
 ```
 
-### styles
+### styles {#styles}
 
 Helper for a set of `<link>` tags for stylesheets. Build a set of style links, then output them all at once. As with the `script` helper, you can optionally set the priority order for each stylesheet.
 
@@ -424,7 +424,7 @@ echo $this->styles();
 ?>
 ```
 
-### tag
+### tag {#tag}
 
 A generic tag helper.
 
@@ -439,7 +439,7 @@ echo $this->tag('/div');
 <div id="foo"></div>
 ```
 
-### title
+### title {#title}
 
 Helper for the `<title>` tag.
 
@@ -481,7 +481,7 @@ echo $this->title();
 <title>Pre2 > Pre1 > This & That > Suf1 > Suf2</title>
 ```
 
-## Aura.Html Form Helpers
+## Aura.Html Form Helpers {#aurahtml-form-helpers}
 
 ## The Form Element
 
@@ -520,33 +520,33 @@ The array is used so that other libraries can generate form element descriptions
 
 The available input element `type` values are:
 
-- [button](#leanpub-auto-button)
-- [checkbox](#leanpub-auto-checkbox)
-- [color](#leanpub-auto-color)
-- [date](#leanpub-auto-date)
-- [datetime](#leanpub-auto-datetime)
-- [datetime-local](#leanpub-auto-datetime-local)
-- [email](#leanpub-auto-email)
-- [file](#leanpub-auto-file)
-- [hidden](#leanpub-auto-hidden)
-- [image](#leanpub-auto-image)
-- [month](#leanpub-auto-month)
-- [number](#leanpub-auto-number)
-- [password](#leanpub-auto-password)
-- [radio](#leanpub-auto-radio)
-- [range](#leanpub-auto-range)
-- [reset](#leanpub-auto-reset)
-- [search](#leanpub-auto-search)
-- [select](#leanpub-auto-select) (including options)
-- [submit](#leanpub-auto-submit)
-- [tel](#leanpub-auto-tel)
-- [text](#leanpub-auto-text)
-- [textarea](#leanpub-auto-textarea)
-- [time](#leanpub-auto-time)
-- [url](#leanpub-auto-url)
-- [week](#leanpub-auto-week)
+- [button](#button)
+- [checkbox](#checkbox)
+- [color](#color)
+- [date](#date)
+- [datetime](#datetime)
+- [datetime-local](#datetime-local)
+- [email](#email)
+- [file](#file)
+- [hidden](#hidden)
+- [image](#image)
+- [month](#month)
+- [number](#number)
+- [password](#password)
+- [radio](#radio)
+- [range](#range)
+- [reset](#reset)
+- [search](#search)
+- [select](#select) (including options)
+- [submit](#submit)
+- [tel](#tel)
+- [text](#text)
+- [textarea](#textarea)
+- [time](#time)
+- [url](#url)
+- [week](#week)
 
-### button
+### button {#button}
 
 ```html+php
 <?php
@@ -560,7 +560,7 @@ echo $this->input(array(
 <input type="button" name="foo" value="bar" />
 ```
 
-### checkbox
+### checkbox {#checkbox}
 
 The `checkbox` type honors the `value_unchecked` pseudo-attribute as a way to specify a `hidden` element for the (you guessed it) unchecked value. It also honors the pseudo-element `label` to place a label after the checkbox.
 
@@ -581,7 +581,7 @@ echo $this->input(array(
 <label><input type="checkbox" name="foo" value="y" checked /> Check me</label>
 ```
 
-### color
+### color {#color}
 
 ```html+php
 <?php
@@ -595,7 +595,7 @@ echo $this->input(array(
 <input type="color" name="foo" value="bar" />
 ```
 
-### date
+### date {#date}
 
 ```html+php
 <?php
@@ -609,7 +609,7 @@ echo $this->input(array(
 <input type="date" name="foo" value="bar" />
 ```
 
-### datetime
+### datetime {#datetime}
 
 ```html+php
 <?php
@@ -623,7 +623,7 @@ echo $this->input(array(
 <input type="datetime" name="foo" value="bar" />
 ```
 
-### datetime-local
+### datetime-local {#datetime-local}
 
 ```html+php
 <?php
@@ -637,7 +637,7 @@ echo $this->input(array(
 <input type="datetime-local" name="foo" value="bar" />
 ```
 
-### email
+### email {#email}
 
 ```html+php
 <?php
@@ -651,7 +651,7 @@ echo $this->input(array(
 <input type="email" name="foo" value="bar" />
 ```
 
-### file
+### file {#file}
 
 ```html+php
 <?php
@@ -665,7 +665,7 @@ echo $this->input(array(
 <input type="file" name="foo" value="bar" />
 ```
 
-### hidden
+### hidden {#hidden}
 
 ```html+php
 <?php
@@ -679,7 +679,7 @@ echo $this->input(array(
 <input type="hidden" name="foo" value="bar" />
 ```
 
-### image
+### image {#image}
 
 ```html+php
 <?php
@@ -693,7 +693,7 @@ echo $this->input(array(
 <input type="image" name="foo" value="bar" />
 ```
 
-### month
+### month {#month}
 
 ```html+php
 <?php
@@ -707,7 +707,7 @@ echo $this->input(array(
 <input type="month" name="foo" value="bar" />
 ```
 
-### number
+### number {#number}
 
 ```html+php
 <?php
@@ -721,7 +721,7 @@ echo $this->input(array(
 <input type="number" name="foo" value="bar" />
 ```
 
-### password
+### password {#password}
 
 ```html+php
 <?php
@@ -735,7 +735,7 @@ echo $this->input(array(
 <input type="password" name="foo" value="bar" />
 ```
 
-### radio
+### radio {#radio}
 
 This element type allows you to generate a single radio input, or multiple radio inputs if you pass an `options` element.
 
@@ -758,7 +758,7 @@ echo $this->input(array(
 <label><input type="radio" name="foo" value="gir" /> irk</label>
 ```
 
-### range
+### range {#range}
 
 ```html+php
 <?php
@@ -772,7 +772,7 @@ echo $this->input(array(
 <input type="range" name="foo" value="bar" />
 ```
 
-### reset
+### reset {#reset}
 
 ```html+php
 <?php
@@ -786,7 +786,7 @@ echo $this->input(array(
 <input type="reset" name="foo" value="bar" />
 ```
 
-### search
+### search {#search}
 
 ```html+php
 <?php
@@ -800,7 +800,7 @@ echo $this->input(array(
 <input type="search" name="foo" value="bar" />
 ```
 
-### select
+### select {#select}
 
 Helper for a `<select>` tag with `<option>` tags. The pseudo-attribute `placeholder` is honored as a placeholder label when no option is selected. Using the attribute `'multiple' => true` will set up a multiple select, and automatically add `[]` to the name if it is not already there.
 
@@ -953,7 +953,7 @@ echo $select;
 </select>
 ```
 
-### submit
+### submit {#submit}
 
 ```html+php
 <?php
@@ -967,7 +967,7 @@ echo $this->input(array(
 <input type="submit" name="foo" value="bar" />
 ```
 
-### tel
+### tel {#tel}
 
 ```html+php
 <?php
@@ -981,7 +981,7 @@ echo $this->irnput(array(
 <input type="tel" name="foo" value="bar" />
 ```
 
-### text
+### text {#text}
 
 ```html+php
 <?php
@@ -995,7 +995,7 @@ echo $this->input(array(
 <input type="text" name="foo" value="bar" />
 ```
 
-### textarea
+### textarea {#textarea}
 
 ```html+php
 <?php
@@ -1009,7 +1009,7 @@ echo $this->input(array(
 <textarea name="foo">bar</textarea>
 ```
 
-### time
+### time {#time}
 
 ```html+php
 <?php
@@ -1023,7 +1023,7 @@ echo $this->input(array(
 <input type="time" name="foo" value="bar" />
 ```
 
-### url
+### url {#url}
 
 ```html+php
 <?php
@@ -1037,7 +1037,7 @@ echo $this->input(array(
 <input type="url" name="foo" value="bar" />
 ```
 
-### week
+### week {#week}
 
 ```html+php
 <?php
@@ -1051,7 +1051,7 @@ echo $this->input(array(
 <input type="week" name="foo" value="bar" />
 ```
 
-## Custom Helpers
+## Custom Helpers {#custom-helpers}
 
 There are two steps to adding your own custom helpers:
 

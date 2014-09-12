@@ -19,6 +19,8 @@ examples.
 composer create-project --stability=dev aura/framework-project {$PROJECT_PATH}
 ```
 
+I> Replace {$PROJECT_PATH} with real path
+
 It will create the `{$PROJECT_PATH}` directory and install the dependencies
 in vendor folder.
 
@@ -62,7 +64,8 @@ complete for we have removed some of the files and directories.
 ```
 
 The `web/index.php` is where you need to point your virtual host. Check the
-chapter [setting up your virtual host](#leanpub-auto-setting-up-your-virtual-host) for more information.
+chapter [setting up your virtual host](#setting-up-your-virtual-host) 
+for more information.
 
 Alternatively you can start the built-in PHP server.
 
