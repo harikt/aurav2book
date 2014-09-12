@@ -76,10 +76,10 @@ $getopt = $context->getopt($options);
 ?>
 ```
 
-> N.b.: When we say "required" here, it means "the option, when present,
-> must have a parameter."  It does *not* mean "the option must be present."
-> These are options, after all. If a particular value *must* be passed,
-> consider using [positional arguments](#positional-arguments) instead.
+I> When we say "required" here, it means "the option, when present,
+I> must have a parameter."  It does *not* mean "the option must be present."
+I> These are options, after all. If a particular value *must* be passed,
+I> consider using [positional arguments](#positional-arguments) instead.
 
 Use the `get()` method on the returned _GetoptValues_ object to retrieve the
 option values. You can provide an alternative default value for when the
@@ -194,8 +194,8 @@ $a    = $getopt->get('-a'); // 1
 ?>
 ```
 
-> N.b.: If a short flag has an optional parameter, the argument immediately
-> after it will be treated as the option value, not as an argument.
+I> If a short flag has an optional parameter, the argument immediately
+I> after it will be treated as the option value, not as an argument.
 
 
 ### Standard Input/Output Streams

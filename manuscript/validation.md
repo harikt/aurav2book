@@ -358,8 +358,8 @@ if (! $success) {
 }
 ```
 
-> N.b.: The `value()` method must be applied to variables, not constants or
-> literals, because of the way rule processing works under-the-hood.
+I> The `value()` method must be applied to variables, not constants or
+I> literals, because of the way rule processing works under-the-hood.
 
 
 ## Creating and Using Custom Rules

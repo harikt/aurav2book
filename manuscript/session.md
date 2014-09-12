@@ -91,7 +91,7 @@ Of course, we can force a session start or reactivation by calling the _Session_
 
 ## Saving, Clearing, and Destroying Sessions
 
-> N.b.: These methods apply to all session data and flashes across all segments.
+I> These methods apply to all session data and flashes across all segments.
 
 To save the session data and end its use during the current request, call the `commit()` method on the _Session_ manager:
 
@@ -101,9 +101,9 @@ $session->commit(); // equivalent of session_write_close()
 ?>
 ```
 
-> N.b.: The `commit()` method is the equivalent of `session_write_close()`.
-> If you do not commit the session, its values will not be available when we
-> continue the session later.
+I> The `commit()` method is the equivalent of `session_write_close()`.
+I> If you do not commit the session, its values will not be available when we
+I> continue the session later.
 
 To clear all session data, but leave the session active during the current request, use the `clear()` method on the _Session_ manager.
 
@@ -150,7 +150,7 @@ $session->regenerateId();
 ?>
 ```
 
-> N.b.: The `regenerateId()` method also regenerates the CSRF token value.
+I> The `regenerateId()` method also regenerates the CSRF token value.
 
 ### Cross-Site Request Forgery
 
@@ -172,9 +172,9 @@ To defend against CSRF attacks, server-side logic should:
 2. Check that all incoming POST/PUT/DELETE (i.e., "unsafe") requests contain
    that value.
 
-> N.b.: If our application uses GET requests to modify resources (which
-> incidentally is an improper use of GET), we should also check for CSRF on
-> GET requests from authenticated users.
+I> If our application uses GET requests to modify resources (which
+I> incidentally is an improper use of GET), we should also check for CSRF on
+I> GET requests from authenticated users.
 
 For this example, the form field name will be `__csrf_value`. In each form
 we want to protect against CSRF, we use the session CSRF token value for that
@@ -264,7 +264,9 @@ $message = $segment->getFlash('message'); // 'Hello world!'
 ?>
 ```
 
-> N.b. As with `get()`, we can provide an alternative value if the flash key does not exist. For example, `getFlash('foo', 'not set')` will return 'not set' if there is no 'foo' key available.
+I> As with `get()`, we can provide an alternative value if the flash key 
+I> does not exist. For example, `getFlash('foo', 'not set')` will 
+I> return 'not set' if there is no 'foo' key available.
 
 Using `setFlash()` makes the flash value available only in the *next* request, not the current one. To make the flash value available immediately as well as in the next request, use `setFlashNow($key, $val)`.
 

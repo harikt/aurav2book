@@ -3,9 +3,9 @@
 Although configuration is a project-level concern, each Aura kernel and
 project handles it in the same way.
 
-> N.b.: Read this chapter carefully.
+W> Read this chapter carefully.
 
-> N.b.: The examples throughout this document are for _Aura\\Web_Project_;
+I> The examples throughout this document are for _Aura\\Web_Project_;
 replace that with _Aura\\Cli_Project_ or _Aura\\Framework_Project_ as needed.
 
 ## Setting The Config Mode

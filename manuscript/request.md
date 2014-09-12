@@ -154,10 +154,10 @@ echo $request->method->get(); // PUT
 
 ## Accept
 
-> N.b. Accept headers can be kind of complicated. See the
-> [HTTP Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
-> for more detailed information regarding quality factors, matching rules,
-> and parameters extensions.
+I> Accept headers can be kind of complicated. See the
+I> [HTTP Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
+I> for more detailed information regarding quality factors, matching rules,
+I> and parameters extensions.
 
 The _Accept_ object helps with negotiating acceptable media, charset,
 encoding, and language values. There is one `$request->accept` sub-object for
@@ -240,8 +240,8 @@ var_dump($media->available->getParameters()); // array('level' => '1')
 ?>
 ```
 
-> N.b. Parameters in the acceptable values that are not present in the
-> available values will not be used for matching.
+I> Parameters in the acceptable values that are not present in the
+I> available values will not be used for matching.
 
 
 ## Params

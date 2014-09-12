@@ -168,9 +168,9 @@ foreach ($this->items as $item) {
 
 Note that we use `echo`, and not `return`, in templates.
 
-> N.b.: The template logic will be executed inside the _View_ object scope,
-> which means that `$this` in the template code will refer to the _View_
-> object. The same is true for closure-based templates.
+I> The template logic will be executed inside the _View_ object scope,
+I> which means that `$this` in the template code will refer to the _View_
+I> object. The same is true for closure-based templates.
 
 ## Setting Data
 
@@ -198,7 +198,7 @@ $view->setData(array(
 ?>
 ```
 
-I> N.b.: Recall that `$this` in the template logic refers to the _View_ object,
+I> Recall that `$this` in the template logic refers to the _View_ object,
 I> so that data assigned to the _View_ can be accessed as properties on `$this`.
 
 The `setData()` method will overwrite all existing data in the _View_ object. The `addData()` method, on the other hand, will merge with existing data in the _View_ object.
@@ -270,7 +270,8 @@ foreach ($this->items as $item) {
 
 The output will be the same as earlier when we invoke the view.
 
-> N.b.: Alternatively, we can use `include` or `require` to execute a PHP file directly in the current template scope.
+T> Alternatively, we can use `include` or `require` to execute a 
+T> PHP file directly in the current template scope.
 
 
 ## Using Sections
@@ -402,7 +403,8 @@ $output = $view->__invoke(); // or just $view()
 
 The output from the inner view template is automatically retained and becomes available via the `getContent()` method on the _View_ object. The layout template then calls `getContent()` to place the inner view results in the outer layout template.
 
-> N.b. We can also call `setLayout()` from inside the view template, allowing us to pick a layout as part of the view logic.
+I> We can also call `setLayout()` from inside the view template, allowing 
+I> us to pick a layout as part of the view logic.
 
 The view template and the layout template both execute inside the same _View_ object. This means:
 

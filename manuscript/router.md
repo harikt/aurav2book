@@ -269,7 +269,7 @@ $router->add('archive', '/archive{/year,month,day}')
     ));
 ```
 
-> N.b.: The leading slash separator is inside the params token, not outside.
+I> The leading slash separator is inside the params token, not outside.
 
 With that, the following routes will all match the 'archive' route, and will
 set the appropriate values:

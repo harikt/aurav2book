@@ -11,7 +11,7 @@ So if your application starts small and grows,
 it is easy to modify the application routes acting as a micro framework
 to a full-stack style.
 
-> N.b.: You can skip to your favourite usage.
+T> You can skip to your favourite usage.
 
 ## Microframework
 
