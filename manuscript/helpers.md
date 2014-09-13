@@ -76,7 +76,7 @@ class Common extends Config
 }
 ```
 
-## Aura.Html Tag Helpers
+## Tag Helpers
 
 Use a helper by calling it as a method on the _HelperLocator_. The available helpers are:
 
@@ -93,7 +93,7 @@ Use a helper by calling it as a method on the _HelperLocator_. The available hel
 - [tag](#tag)
 - [title](#title)
 
-There is also a series of [helpers for forms](#aurahtml-form-helpers).
+There is also a series of [helpers for forms](#form-helpers).
 
 ### a {#a}
 
@@ -481,7 +481,7 @@ echo $this->title();
 <title>Pre2 > Pre1 > This & That > Suf1 > Suf2</title>
 ```
 
-## Aura.Html Form Helpers {#aurahtml-form-helpers}
+## Form Helpers {#form-helpers}
 
 ## The Form Element
 

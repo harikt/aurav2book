@@ -32,7 +32,7 @@ class Common extends Config
 }
 ```
 
-The `aura/web-kernel:router` is an object of type _Aura\Router\Router_ . So if you are
+The `aura/web-kernel:router` is an object of type _Aura\\Router\\Router_ . So if you are
 familiar with [Aura.Router](https://github.com/auraphp/Aura.Router) then
 you are done with this chapter, else read on.
 

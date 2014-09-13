@@ -3,9 +3,9 @@
 Aura web/framework projects can handle different variations of dispatching
 with the help of [Aura.Dispatcher](https://github.com/auraphp/Aura.Dispatcher).
 
-* Microframework
-* Modified Micro-Framework Style
-* Full-Stack Style
+* [Microframework](#micro-framework)
+* [Modified Micro-Framework Style](#modified-micro-framework)
+* [Full-Stack Style](#full-stack)
 
 So if your application starts small and grows,
 it is easy to modify the application routes acting as a micro framework
@@ -13,7 +13,7 @@ to a full-stack style.
 
 T> You can skip to your favourite usage.
 
-## Microframework
+## Microframework {#micro-framework}
 
 The following is an example of a micro-framework style route, where the
 action logic is embedded in the route params. In the `modify()`
@@ -54,7 +54,7 @@ class Common extends Config
 }
 ```
 
-## Modified Micro-Framework Style
+## Modified Micro-Framework Style {#modified-micro-framework}
 
 We can modify the above example to put the action logic in the
 dispatcher instead of the route itself.
@@ -102,7 +102,7 @@ class Common extends Config
 }
 ```
 
-## Full-Stack Style
+## Full-Stack Style {#full-stack}
 
 You can migrate from a micro-framework style to a full-stack style (or start
 with full-stack style in the first place).

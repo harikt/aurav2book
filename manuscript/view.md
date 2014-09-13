@@ -5,7 +5,8 @@ templating differs from person to person. And integrating any templating
 library in Aura is not hard as long as it can be installed and loaded
 via Composer.
 
-In this chapter we are going to integrate [Aura.View][] an implementation
+In this chapter we are going to integrate 
+[Aura.View](https://github.com/auraphp/Aura.View) an implementation
 of the [TemplateView](http://martinfowler.com/eaaCatalog/templateView.html) and
 [TwoStepView](http://martinfowler.com/eaaCatalog/twoStepView.html)
 patterns, with support for helpers and for closures as templates,
@@ -104,7 +105,7 @@ class Common extends Config
 ```
 
 Now move the template to a file or use a Closure which can be
-rendered by [Aura.View][].
+rendered by Aura.View.
 Let us once again edit the file `BlogRead.php` file `__invoke` method.
 
 ```php

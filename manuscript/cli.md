@@ -399,11 +399,11 @@ into your output or error string. Reset back to normal with `<<reset>>`.
 
 Aura.Cli_Kernel defines the following service objects in the _Container_:
 
-- `aura/cli-kernel:dispatcher`: an instance of _Aura\Dispatcher\Dispatcher_
-- `aura/cli-kernel:context`: an instance of _Aura\Cli\Context_
-- `aura/cli-kernel:stdio`: an instance of _Aura\Cli\Stdio_
-- `aura/cli-kernel:help_service`: an instance of _Aura\Cli_Kernel\HelpService_
-- `aura/project-kernel:logger`: an instance of `Monolog\Logger`
+- `aura/cli-kernel:dispatcher`: an instance of _Aura\\Dispatcher\\Dispatcher_
+- `aura/cli-kernel:context`: an instance of _Aura\\Cli\\Context_
+- `aura/cli-kernel:stdio`: an instance of _Aura\\Cli\\Stdio_
+- `aura/cli-kernel:help_service`: an instance of _Aura\\Cli_Kernel\\HelpService_
+- `aura/project-kernel:logger`: an instance of `Monolog\\Logger`
 
 ## Quick Start
 

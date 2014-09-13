@@ -338,30 +338,6 @@ array (
 )
 ```
 
-## Applying Rules to Individual Values
-
-Normally, we use the filter with data objects and arrays. Alternatively, we
-can apply a filter rule to an individual value:
-
-```php
-<?php
-// get a new filter
-$filter = require "/path/to/Aura.Filter/scripts/instance.php";
-
-// an individual value
-$username = 'new_username';
-
-// filter the individual value
-$success = $filter->value($username, $filter::IS, 'alnum');
-if (! $success) {
-    echo "Username is not alphanumeric.";
-}
-```
-
-I> The `value()` method must be applied to variables, not constants or
-I> literals, because of the way rule processing works under-the-hood.
-
-
 ## Creating and Using Custom Rules
 
 There are three steps to creating and using new rules:

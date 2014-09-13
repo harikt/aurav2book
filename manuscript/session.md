@@ -27,8 +27,8 @@ composer update
 ## Service
 
 Aura.Session already have `aura/session:session` service which is an object of
-_Aura\Session\Session_ . You can get inject the service to responder or
-view helper and make use of the _Aura\Session\Session_ object.
+_Aura\\Session\\Session_ . You can get inject the service to responder or
+view helper and make use of the _Aura\\Session\\Session_ object.
 
 ## Segments
 
