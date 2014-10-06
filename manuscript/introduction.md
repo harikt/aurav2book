@@ -79,7 +79,7 @@ the message `Hello World!`.
 
 Great! Everything is working fine.
 
-## Exploring the Hello World!
+## Exploring the Hello World! {#introduction-exploring}
 
 Open the file `config/Common.php`. Look into the `modifyWebRouter()` and
 `modifyWebDispatcher()` methods.

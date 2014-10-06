@@ -1,4 +1,4 @@
-# Response
+# Response {#response}
 
 The _Response_ object describes the web response that should be sent to the
 client. It is **not** an HTTP response object proper. Instead, it is a series
@@ -38,7 +38,7 @@ different parts of the response:
 - `$response->redirect` for convenience methods related to Location and Status
 
 
-## Status
+## Status {#response-status}
 
 Use the `$response->status` object as follows:
 
@@ -62,7 +62,7 @@ $version = $response->status->getVersion();
 ?>
 ```
 
-## Headers
+## Headers {#response-headers}
 
 The `$response->headers` object has these methods:
 
@@ -86,7 +86,7 @@ $all_headers = $response->headers->get();
 Setting a header value to null, false, or an empty string will remove that
 header; setting it to zero will *not* remove it.
 
-## Cookies
+## Cookies {#response-cookies}
 
 The `$response->cookies` object has these methods:
 
@@ -143,7 +143,7 @@ $cookies['foo'] = array(
 ```
 
 
-## Content
+## Content {#response-content}
 
 The `$response->content` object has these convenience methods related to the
 response content and content headers:
@@ -184,7 +184,7 @@ switch ($response->content->getType()) {
 ```
 
 
-## Cache
+## Cache {#response-cache}
 
 The `$response->cache` object has several convenience methods related to HTTP
 cache headers.
@@ -234,7 +234,7 @@ For more information about caching headers, please consult the
   [Palizine]: http://palizine.plynt.com/issues/2008Jul/cache-control-attributes/
 
 
-## Redirect
+## Redirect {#response-redirect}
 
 The `$response->redirect` object has several convenience methods related to
 status and `Location` headers for redirection.

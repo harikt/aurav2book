@@ -4,7 +4,7 @@ Forms are an integral part of web application.
 [Aura.Input](https://github.com/auraphp/Aura.Input) is a tool to
 describe HTML fields and values.
 
-## Installation
+## Installation {#forms-installation}
 
 Even though Aura.Input has a base filter implementation,
 it is good to integrate a powerful filter system like Aura.Filter.
@@ -131,7 +131,7 @@ setter injection.
 $di->params['Vendor\Package\SomeDomain']['contact_form'] = $di->lazyNew('App\Input\ContactForm');
 ```
 
-## Populating
+## Populating {#forms-populating}
 
 Form can be populated using `fill()` method.
 
@@ -141,7 +141,7 @@ $this->contact_form->fill($_POST);
 
 > In aura term it will be [$this->request->post->get()](https://github.com/auraphp/Aura.Web/blob/develop-2/README-REQUEST.md#superglobals)
 
-## Validating User Input
+## Validating User Input {#forms-validating-user-input}
 
 You can validate the form via the `filter()` method.
 
