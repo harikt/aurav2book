@@ -1,11 +1,11 @@
-# Validation
+# Validation {#validation}
 
 [Aura.Filter](https://github.com/auraphp/Aura.Filter) is a tool to validate
 and sanitize data.
 
 We are going to look into version 1 of Aura.Filter.
 
-## Installation
+## Installation {#validation-installation}
 
 We have already installed `aura/filter` adding `foa/filter-intl-bundle` into `composer.json`.
 
@@ -24,9 +24,9 @@ and run
 composer update
 ```
 
-## Applying Rules to Data Objects
+## Applying Rules to Data Objects {#validation-applying-rules}
 
-### Soft, Hard, and Stop Rules
+### Soft, Hard, and Stop Rules {#validation-rules}
 
 There are three types of rule processing we can apply:
 
@@ -42,7 +42,7 @@ There are three types of rule processing we can apply:
   filtering on the data object.
 
 
-## Validating and Sanitizing
+## Validating and Sanitizing {#validation-validation-sanitization}
 
 We validate data by applying a rule with one of the following requirements:
 
@@ -69,7 +69,7 @@ Each field is sanitized in place; i.e., the data object property will be
 modified directly.
 
 
-## Blank Values
+## Blank Values {#validation-blank-values}
 
 Aura Filter incorporates the concept of "blank" values, as distinct from
 `isset()` and `empty()`. A value is blank if it is `null`, an empty string, or
@@ -99,7 +99,7 @@ $not_blank = [
 ];
 ```
 
-## Available Rules
+## Available Rules {#validation-available-rules}
 
 - `alnum`: Validate the value as alphanumeric only. Sanitize to leave only
   alphanumeric characters. Usage:
@@ -287,7 +287,7 @@ messages for which all rules it failed.
             ]
         );
 
-## Custom Messages
+## Custom Messages {#validation-custom-messages}
 
 By default when a rule fails, the messages you will be getting are from the
 `intl/en_US.php`. But you can also provide a single custom message for
@@ -338,7 +338,7 @@ array (
 )
 ```
 
-## Creating and Using Custom Rules
+## Creating and Using Custom Rules {#validation-creating-custom-rules}
 
 There are three steps to creating and using new rules:
 
@@ -348,7 +348,7 @@ There are three steps to creating and using new rules:
 
 3. Use the new rule in our filter chain
 
-## Writing a Rule Class
+## Writing a Rule Class {#validation-writing-rule-class}
 
 Writing a rule class is straightforward:
 
@@ -428,7 +428,7 @@ class Hex extends AbstractRule
 }
 ```
 
-## Set The Class As A Service
+## Set The Class As A Service {#validation-set-service}
 
 Now we set the rule class into the `RuleLocator`.
 
@@ -440,7 +440,7 @@ $locator->set('hex', function () {
 });
 ```
 
-## Apply The New Rule
+## Apply The New Rule {#validation-apply-the-rule}
 
 Finally, we can use the rule in our filter:
 

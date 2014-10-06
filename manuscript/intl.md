@@ -1,15 +1,15 @@
-# Internationalization
+# Internationalization {#intl}
 
 The Aura.Intl package provides internationalization (I18N) tools, specifically
 package-oriented per-locale message translation.
 
-## Installation
+## Installation {#intl-installation}
 
 ```bash
 composer require "aura/intl:1.1.*"
 ```
 
-## Service
+## Service {#intl-service}
 
 In your modify method you can get the service `intl_translator_locator` like
 
@@ -17,7 +17,7 @@ In your modify method you can get the service `intl_translator_locator` like
 $translators = $di->get('intl_translator_locator');
 ```
 
-## Setting Localized Messages For A Package
+## Setting Localized Messages For A Package {#intl-localized-message}
 
 We can set localized messages for a package through the `PackageLocator` object
 from the translator locator. We create a new `Package` with messages and place
@@ -55,7 +55,7 @@ $packages->set('Vendor.Package', 'pt_BR', function() {
 ?>
 ```
 
-## Setting The Default Locale
+## Setting The Default Locale {#intl-setting-default-locale}
 
 We can set the default locale for translations using the `setLocale()` method:
 
@@ -65,7 +65,7 @@ $translators->setLocale('pt_BR');
 ?>
 ```
 
-## Getting A Localized Message
+## Getting A Localized Message {#intl-getting-localized-message}
 
 Now that the translator locator has messages and a default locale, we can get
 an individual package translator. The package translator is suitable for
@@ -90,7 +90,7 @@ echo $translator->translate('FOO'); // 'The text for "foo."'
 ```
 
 
-## Replacing Message Tokens With Values
+## Replacing Message Tokens With Values {#intl-replacing-tokens}
 
 We often need to use dynamic values in translated messages. First, the
 message string needs to have a token placeholder for the dynamic value:
@@ -135,7 +135,7 @@ echo $translator->translate('PAGE', [
 ?>
 ```
 
-## Pluralized Messages
+## Pluralized Messages {#intl-pluralized-message}
 
 Usually, we need to use different messages when a value is singular or plural.
 The `BasicFormatter` is not capable of presenting different messages based on

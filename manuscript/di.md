@@ -56,12 +56,12 @@ $di->set('service_name', $di->lazyNew('Example'));
 Now the service is created only when we we `get()` it, and not before.
 This lets us set as many services as we want, but only incur the overhead of creating the instances we actually use.
 
-## Constructor Injection
+## Constructor Injection {#di-constructor-injection}
 
 When we use the _Container_ to instantiate a new object, we often need
 to inject (i.e., set) constructor parameter values in various ways.
 
-## Default Parameter Values
+## Default Parameter Values {#di-constructor-injection-default-params}
 
 We can define default values for constructor parameters using the `$di->params` array on the _Container_.
 
@@ -121,7 +121,7 @@ $di->set('service_name', $di->lazyNew(
 This will leave the `$foo` parameter default in place, and override
 the `$bar` parameter value, for just that instance of the _ExampleWithParams_.
 
-## Lazy-Loaded Services As Parameter Values
+## Lazy-Loaded Services As Parameter Values {#di-lazy-load-service}
 
 Sometimes a class will need another service as one of its parameters.
 By way of example, the following class needs a database connection:
@@ -150,11 +150,11 @@ $di->params['ExampleNeedsService']['db'] = $di->lazyGet('db_service');
 
 This keeps the service from being created until the very moment it is needed. If we never instantiate anything that needs the service, the service itself will never be instantiated.
 
-## Setter Injection
+## Setter Injection {#di-setter-injection}
 
 This package supports setter injection in addition to constructor injection. (These can be combined as needed.)
 
-## Setter Method Values
+## Setter Method Values {#di-setter-method}
 
 After the _Container_ constructs a new instance of an object, we can specify that certain methods should be called with certain values immediately after instantiation by using the `$di->setter` array.  Say we have class like the following:
 
@@ -189,7 +189,7 @@ and which are "normal use" methods.
 Note also that this works only with explicitly-defined setter methods.
 Setter methods that exist only via magic `__call()` will not be honored.
 
-## Instance-Specific Setter Values
+## Instance-Specific Setter Values {#di-instance-specific-setter}
 
 As with constructor injection, we can note instance-specific setter
 values to use in place of the defaults. We do so via the third

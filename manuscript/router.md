@@ -1,4 +1,4 @@
-# Routing
+# Routing {#routing}
 
 Configuration of routing and dispatching is done via the project-level config/
 class files. If a route needs to be available in every config mode,
@@ -44,7 +44,7 @@ Don't worry, we will cover dispatching in next chapter.
 > Note: This chapter gives you a basic understanding of the different types of
 methods available in router.
 
-## Adding a Route
+## Adding a Route {#routing-adding-route}
 
 We will not be showing the whole config file to reduce the space used.
 This document assumes you are adding the route in the `modify()` method after
@@ -83,9 +83,9 @@ the related HTTP method:
 - `$router->addPost()`
 - `$router->addPut()`
 
-## Advanced Usage
+## Advanced Usage {#routing-advanced-usage}
 
-## Extended Route Specification
+## Extended Route Specification {#routing-extended-route}
 
 You can extend a route specification with the following methods:
 
@@ -176,7 +176,7 @@ $router->add('blog.read', '/blog/read/{id}{format}')
     });
 ```
 
-## Default Route Specifications
+## Default Route Specifications {#routing-route-specification}
 
 You can set the default route specifications with the following _Router_
 methods; the values will apply to all routes added thereafter.
@@ -213,7 +213,7 @@ $router->setIsMatchCallable(function (...) { ... });
 $router->setGenerateCallable(function (...) { ... });
 ```
 
-## Simple Routes
+## Simple Routes {#routing-simple-route}
 
 You don't need to specify an extended route specification. With the following
 simple route ...
@@ -235,7 +235,7 @@ $router->add('archive', '/archive/{year}/{month}/{day}')
     ));
 ```
 
-## Automatic Params
+## Automatic Params {#routing-automatic-params}
 
 The _Router_ will automatically populate values for the `action`
 route param if one is not set manually.
@@ -252,7 +252,7 @@ $router->add('foo.dib', '/path/to/dib')
 $router->add('/path/to/{action}');
 ```
 
-## Optional Params
+## Optional Params {#routing-optional-params}
 
 Sometimes it is useful to have a route with optional named params. None, some,
 or all of the optional params may be present, and the route will still match.
@@ -288,7 +288,7 @@ Only one set of optional params per path is recognized by the _Router_.
 Optional params belong at the end of a route path; placing them elsewhere may
 result in unexpected behavior.
 
-## Wildcard Params
+## Wildcard Params {#routing-wildcard-params}
 
 Sometimes it is useful to allow the trailing part of the path be anything at
 all. To allow arbitrary trailing params on a route, extend the route
@@ -300,7 +300,7 @@ $router->add('wild_post', '/post/{id}')
     ->setWildcard('other');
 ```
 
-## Attaching Route Groups
+## Attaching Route Groups {#routing-attaching-route-groups}
 
 You can add a series of routes all at once under a single "mount point" in
 your application. For example, if you want all your blog-related routes to be
@@ -373,7 +373,7 @@ $router->attach($name_prefix, $path_prefix, function ($router) {
 });
 ```
 
-## Attaching REST Resource Routes
+## Attaching REST Resource Routes {#routing-attaching-rest-resource-route}
 
 The router can attach a series of REST resource routes for you with the
 `attachResource()` method:

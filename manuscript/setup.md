@@ -1,6 +1,6 @@
 # Setting up your virtual host {#setting-up-your-virtual-host}
 
-## Apache
+## Apache {#setting-up-your-virtual-host-apache}
 
 We are going to point the virtual host to `aura.localhost`.
 If you are in a debain based OS, you want to create a file
@@ -41,7 +41,7 @@ Before we go and check in browser add one more line in the `/etc/hosts`
 127.0.0.1   aura2.localhost www.aura2.localhost
 ```
 
-## Nginx
+## Nginx {#setting-up-your-virtual-host-nginx}
 
 In ubuntu 12.04 the configuration file is under `/etc/nginx/sites-available`
 

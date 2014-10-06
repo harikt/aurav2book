@@ -1,18 +1,18 @@
-# View
+# View {#view}
 
 Aura web framework doesn't come packaged with any templating. The reason is love for
 templating differs from person to person. And integrating any templating
 library in Aura is not hard as long as it can be installed and loaded
 via Composer.
 
-In this chapter we are going to integrate 
+In this chapter we are going to integrate
 [Aura.View](https://github.com/auraphp/Aura.View) an implementation
 of the [TemplateView](http://martinfowler.com/eaaCatalog/templateView.html) and
 [TwoStepView](http://martinfowler.com/eaaCatalog/twoStepView.html)
 patterns, with support for helpers and for closures as templates,
 using PHP itself as the templating language.
 
-## Installing Aura.View
+## Installing Aura.View {#view-installation}
 
 Edit your `composer.json` file and add `"aura/view": "2.0.*"` in
 the require section.
@@ -37,7 +37,7 @@ The DI configuration for every aura library is already in
 
 So we don't need to do anything for now.
 
-## Integration with actions
+## Integration with actions {#view-integration-action}
 
 Let us integrate Aura.View to the full stack framework example shown in
 previous chapter.
@@ -137,7 +137,7 @@ class BlogRead
 }
 ```
 
-## Escaping Output
+## Escaping Output {#view-escaping-output}
 
 Security-minded observers will note that all the examples in this document use manually-escaped output. Because this package is not specific to any particular media type, it **does not** come with escaping functionality.
 
@@ -173,7 +173,7 @@ I> The template logic will be executed inside the _View_ object scope,
 I> which means that `$this` in the template code will refer to the _View_
 I> object. The same is true for closure-based templates.
 
-## Setting Data
+## Setting Data {#view-setting-data}
 
 We will almost always want to use dynamic data in our templates. To assign a data collection to the _View_, use the `setData()` method and either an array or an object. We can then use data elements as if they are properties on the
 _View_ object.
@@ -204,7 +204,7 @@ I> so that data assigned to the _View_ can be accessed as properties on `$this`.
 
 The `setData()` method will overwrite all existing data in the _View_ object. The `addData()` method, on the other hand, will merge with existing data in the _View_ object.
 
-## Invoking A One-Step View
+## Invoking A One-Step View {#view-onestep-view}
 
 Now that we have registered a template and assigned some data to the _View_, we tell the _View_ which template to use, and then invoke the _View_:
 
@@ -224,7 +224,7 @@ Item #3 is 'Baz'.
 ```
 
 
-## Using Sub-Templates (aka "Partials")
+## Using Sub-Templates (aka "Partials") {#view-partials}
 
 Sometimes we will want to split a template up into multiple pieces. We can
 render these "partial" template pieces using the `render()` method in our main template code.
@@ -271,11 +271,11 @@ foreach ($this->items as $item) {
 
 The output will be the same as earlier when we invoke the view.
 
-T> Alternatively, we can use `include` or `require` to execute a 
+T> Alternatively, we can use `include` or `require` to execute a
 T> PHP file directly in the current template scope.
 
 
-## Using Sections
+## Using Sections {#view-sections}
 
 Sections are similar to sub-templates (aka "partials") except that they are captured inline for later use. In general, they are used by view templates to capture output for layout templates.
 
@@ -315,7 +315,7 @@ $this->setSection('local-nav', $this->render('_local-nav.php'));
 ?>
 ```
 
-## Using Helpers
+## Using Helpers {#view-using-helpers}
 
 We can register closures or other invokable objects as helpers through
 the _HelperRegistry_. We can then call these helpers as if they are methods on the _View_.
@@ -340,7 +340,7 @@ $output = $view();
 This library does not come with any view helpers. You will need to add your own
 helpers to the registry as closures or invokable objects.
 
-## Custom Helper Managers
+## Custom Helper Managers {#view-custom-helper-managers}
 
 The _View_ is not type-hinted to any particular class for its helper manager. This means you may inject an arbitrary object of your own at _View_ construction time to manage helpers. To do so, pass a helper manager of your own to the _ViewFactory_.
 
@@ -363,7 +363,7 @@ $view = $view_factory->newInstance($helpers);
 In the next chapter we will cover the comprehensive set of HTML helpers,
 including form and input helpers.
 
-## Rendering a Two-Step View
+## Rendering a Two-Step View {#view-rendering-twostepview}
 
 To wrap the main content in a layout as part of a two-step view, we register
 layout templates with the _View_ and then call `setLayout()` to pick one of
@@ -404,7 +404,7 @@ $output = $view->__invoke(); // or just $view()
 
 The output from the inner view template is automatically retained and becomes available via the `getContent()` method on the _View_ object. The layout template then calls `getContent()` to place the inner view results in the outer layout template.
 
-I> We can also call `setLayout()` from inside the view template, allowing 
+I> We can also call `setLayout()` from inside the view template, allowing
 I> us to pick a layout as part of the view logic.
 
 The view template and the layout template both execute inside the same _View_ object. This means:

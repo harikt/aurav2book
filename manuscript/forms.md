@@ -1,4 +1,4 @@
-# Forms
+# Forms {#forms}
 
 Forms are an integral part of web application.
 [Aura.Input](https://github.com/auraphp/Aura.Input) is a tool to
@@ -30,7 +30,7 @@ and run
 composer update
 ```
 
-## Usage
+## Usage {#forms-usage}
 
 Inorder to create a form, we need to extend the `Aura\Input\Form` class
 and override the `init()` method.
@@ -104,7 +104,7 @@ We will talk about [Aura.Filter](https://github.com/auraphp/Aura.Filter/tree/dev
 
 > Note : We are using v1 components of input, intl, filter.
 
-## Configuration
+## Configuration {#forms-configuration}
 
 If we create `App\Input\ContactForm` object via the new operator
 we need to pass the dependencies manually as
@@ -157,7 +157,7 @@ if ($pass) {
 }
 ```
 
-## Rendering
+## Rendering {#forms-rendering}
 
 Inorder to render the form, we need to pass the ContactForm object and use the
 `Aura.Html` helpers.

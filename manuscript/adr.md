@@ -1,4 +1,4 @@
-# Action Domain Responder
+# Action Domain Responder {#adr}
 
 We recommend you reading the
 [MVC to ADR draft](https://github.com/pmjones/mvc-refinement).
@@ -31,7 +31,7 @@ results from the _Domain_ interaction, data from the client request, and so on.)
 
 1. The web handler sends the response back to the client.
 
-## Responder
+## Responder {#adr-responder}
 
 Let us modify our previous example of _BlogRead_ action class to
 render the contents via _BlogRead_ responder.
@@ -193,7 +193,7 @@ $di->params['App\Responders\BlogRead'] = array(
 
 Now time to browse the `http://localhost:8000/blog/read/1` .
 
-### Questions
+### Questions {#adr-questions}
 
 What have we achieved other than creating lots of classes ?
 
@@ -206,7 +206,7 @@ This help us in to test the action classes, services etc. There are still
 more room to improve like moving the methods which are always
 needed for any responder to an _AbstractResponder_ etc.
 
-## Abstract Responder
+## Abstract Responder {#adr-abstract-responder}
 
 We have intentionally left not to make _AbstractResponder_ .
 We feel most of them who are reading the docs will be new

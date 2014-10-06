@@ -1,10 +1,10 @@
-# Getting Started
+# Getting Started {#introduction-getting-started}
 
 [Composer](http://getcomposer.org) has become the de facto standard
 for installing libraries in the php world. Aura does the same.
 
 
-## Installation
+## Installation {#introduction-installation}
 
 There are 3 types of skeletons
 
@@ -24,7 +24,7 @@ I> Replace {$PROJECT_PATH} with real path
 It will create the `{$PROJECT_PATH}` directory and install the dependencies
 in vendor folder.
 
-### Structure
+### Structure {#introduction-structure}
 
 The directory structure looks something similar to this. The list is not
 complete for we have removed some of the files and directories.
@@ -64,7 +64,7 @@ complete for we have removed some of the files and directories.
 ```
 
 The `web/index.php` is where you need to point your virtual host. Check the
-chapter [setting up your virtual host](#setting-up-your-virtual-host) 
+chapter [setting up your virtual host](#setting-up-your-virtual-host)
 for more information.
 
 Alternatively you can start the built-in PHP server.

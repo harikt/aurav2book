@@ -1,9 +1,9 @@
-# Session
+# Session {#session}
 
 Provides session management functionality, including lazy session starting,
 session segments, next-request-only ("flash") values, and CSRF tools.
 
-## Installation
+## Installation {#session-installation}
 
 We are going to install `aura/session` version `2.0.*@dev` .
 
@@ -24,13 +24,13 @@ and run
 composer update
 ```
 
-## Service
+## Service {#session-service}
 
 Aura.Session already have `aura/session:session` service which is an object of
 _Aura\\Session\\Session_ . You can get inject the service to responder or
 view helper and make use of the _Aura\\Session\\Session_ object.
 
-## Segments
+## Segments {#session-segments}
 
 In normal PHP, we keep session values in the `$_SESSION` array. However, when different libraries and projects try to modify the same keys, the resulting conflicts can result in unexpected behavior. To resolve this, we use _Segment_ objects. Each _Segment_ addresses a named key within the `$_SESSION` array for deconfliction purposes.
 
@@ -76,7 +76,7 @@ superglobal without stepping on each other's toes.
 To clear all the values on a _Segment_, use the `clear()` method.
 
 
-## Lazy Session Starting
+## Lazy Session Starting {#session-lazy-session-starting}
 
 Merely instantiating the _Session_ manager and getting a _Segment_ from it does *not* call `session_start()`. Instead, `session_start()` occurs only in certain circumstances:
 
@@ -89,7 +89,7 @@ This means we can create each _Segment_ at will, and `session_start()` will not 
 Of course, we can force a session start or reactivation by calling the _Session_ `start()` method, but that defeats the purpose of lazy-loaded sessions.
 
 
-## Saving, Clearing, and Destroying Sessions
+## Saving, Clearing, and Destroying Sessions {#session-saving-clearing-destroying}
 
 I> These methods apply to all session data and flashes across all segments.
 
@@ -137,9 +137,9 @@ $session = $session_factory->newInstance($_COOKIE, $delete_cookie);
 ?>
 ```
 
-## Session Security
+## Session Security {#session-security}
 
-### Session ID Regeneration
+### Session ID Regeneration {#session-id-regeneration}
 
 Any time a user has a change in privilege (that is, gaining or losing access
 rights within a system) be sure to regenerate the session ID:
@@ -152,7 +152,7 @@ $session->regenerateId();
 
 I> The `regenerateId()` method also regenerates the CSRF token value.
 
-### Cross-Site Request Forgery
+### Cross-Site Request Forgery {#session-csrf}
 
 A "cross-site request forgery" is a security issue where the attacker, via
 malicious JavaScript or other means, issues a request in-the-blind from a
@@ -162,7 +162,7 @@ did not actually make the request (the malicious JavaScript did).
 
 <http://en.wikipedia.org/wiki/Cross-site_request_forgery>
 
-#### Defending Against CSRF
+#### Defending Against CSRF {#session-defending-csrf}
 
 To defend against CSRF attacks, server-side logic should:
 
@@ -229,7 +229,7 @@ if ($unsafe && $user->auth->isValid()) {
 ?>
 ```
 
-#### CSRF Value Generation
+#### CSRF Value Generation {#session-csrf-value-generation}
 
 For a CSRF token to be useful, its random value must be cryptographically
 secure. Using things like `mt_rand()` is insufficient. Aura.Session comes with
@@ -240,11 +240,11 @@ implementation of the `RandvalInterface`. We suggest a wrapper around
 [RandomLib](https://github.com/ircmaxell/RandomLib).
 
 
-## Flash Values
+## Flash Values {#session-flash-values}
 
 _Segment_ values persist until the session is cleared or destroyed. However, sometimes it is useful to set a value that propagates only through the next request, and is then discarded. These are called "flash" values.
 
-### Setting And Getting Flash Values
+### Setting And Getting Flash Values {#session-setting-getting-flash}
 
 To set a flash value on a _Segment_, use the `setFlash()` method.
 
@@ -264,15 +264,15 @@ $message = $segment->getFlash('message'); // 'Hello world!'
 ?>
 ```
 
-I> As with `get()`, we can provide an alternative value if the flash key 
-I> does not exist. For example, `getFlash('foo', 'not set')` will 
+I> As with `get()`, we can provide an alternative value if the flash key
+I> does not exist. For example, `getFlash('foo', 'not set')` will
 I> return 'not set' if there is no 'foo' key available.
 
 Using `setFlash()` makes the flash value available only in the *next* request, not the current one. To make the flash value available immediately as well as in the next request, use `setFlashNow($key, $val)`.
 
 Using `getFlash()` returns only the values that are available now from having been set in the previous request. To read a value that will be available in the next request, use `getFlashNext($key, $alt)`.
 
-### Keeping and Clearing Flash Values
+### Keeping and Clearing Flash Values {#session-keeping-and-clearing-flash}
 
 Sometimes we will want to keep the flash values in the current request for the next request.  We can do so on a per-segment basis by calling the _Segment_ `keepFlash()` method, or we can keep all flashes for all segments by calling the _Session_ `keepFlash()` method.
 

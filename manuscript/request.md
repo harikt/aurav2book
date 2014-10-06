@@ -1,4 +1,4 @@
-# Request
+# Request {#request}
 
 The _Request_ object describes the current web execution context for PHP. Note
 that it is **not** an HTTP request object proper, since it includes things
@@ -38,7 +38,7 @@ of the PHP superglobals ...
 The _Request_ object has only one method, `isXhr()`, to indicate if the
 request is an _XmlHttpRequest_ or not.
 
-## Superglobals
+## Superglobals {#request-superglobals}
 
 Each of the superglobal representation objects has a single method, `get()`,
 that returns the value of a key in the superglobal, or an alternative value
@@ -58,7 +58,7 @@ $file = $request->files->get('file_field', array());
 ?>
 ```
 
-## Client
+## Client {#request-client}
 
 The `$request->client` object has these methods:
 
@@ -78,7 +78,7 @@ The `$request->client` object has these methods:
 - `isMobile()` returns true if the `User-Agent` header matches one of a list
   of mobile user agents (otherwise false).
 
-## Content
+## Content {#request-content}
 
 The `$request->content` object has these methods:
 
@@ -94,7 +94,7 @@ the `get()` method will automatically decode the body with `json_decode()`.
 Likewise, if the content type is `application/x-www-form-urlencoded`, the
 `get()` method will automatically decode the body with `parse_str()`.
 
-## Headers
+## Headers {#request-headers}
 
 The `$request->headers` object has a single method, `get()`, that returns the
 value of a particular header, or an alternative value if the key is not
@@ -107,7 +107,7 @@ $header_value = $request->headers->get('X-Header', 'not set');
 ?>
 ```
 
-## Method
+## Method {#request-method}
 
 The `$request->method` object has these methods:
 
@@ -152,99 +152,7 @@ echo $request->method->get(); // PUT
 ?>
 ```
 
-## Accept
-
-I> Accept headers can be kind of complicated. See the
-I> [HTTP Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
-I> for more detailed information regarding quality factors, matching rules,
-I> and parameters extensions.
-
-The _Accept_ object helps with negotiating acceptable media, charset,
-encoding, and language values. There is one `$request->accept` sub-object for
-each of them. Each has a `negotiate()` method.
-
-Pass an array of available values to the `negotiate()` method to negotiate
-between the acceptable values and the available ones. The return will be a
-plain old PHP object with `$available` and `$acceptable` properties describing
-highest-quality match.
-
-```php
-<?php
-// assume the request indicates these Accept values (XML is best, then CSV,
-// then anything else)
-$_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
-
-// assume our application has `application/json` and `text/csv` available
-// as media types, in order of highest-to-lowest preference for delivery
-$available = array(
-    'application/json',
-    'text/csv',
-);
-
-// get the best match between what the request finds acceptable and what we
-// have available; the result in this case is 'text/csv'
-$media = $request->accept->media->negotiate($available);
-echo $media->available->getValue(); // text/csv
-?>
-```
-
-If the requested URL ends in a recognized file extension for a media type,
-the _Accept\Media_ object will use that file extension instead of the explicit
-`Accept` header value to determine the acceptable media type for the
-request:
-
-```php
-<?php
-// assume the request indicates these Accept values (XML is best, then CSV,
-// then anything else)
-$_SERVER['HTTP_ACCEPT'] = 'application/xml;q=1.0,text/csv;q=0.5,*;q=0.1';
-
-// assume also that the request URI explicitly notes a .json file extension
-$_SERVER['REQUEST_URI'] = '/path/to/entity.json';
-
-// assume our application has `application/json` and `text/csv` available
-// as media types, in order of highest-to-lowest preference for delivery
-$available = array(
-    'application/json',
-    'text/csv',
-);
-
-// get the best match between what the request finds acceptable and what we
-// have available; the result in this case is 'application/json' because of
-// the file extenstion overriding the Accept header values
-$media = $request->accept->media->negotiate($available);
-echo $media->available->getValue(); // application/json
-?>
-```
-
-If the acceptable values indicate additional parameters, you can match on those as well:
-
-```php
-<?php
-// assume the request indicates these Accept values (XML is best, then CSV,
-// then anything else)
-$_SERVER['HTTP_ACCEPT'] = 'text/html;level=1;q=0.5,text/html;level=3';
-
-// assume our application has `application/json` and `text/csv` available
-// as media types, in order of highest-to-lowest preference for delivery
-$available = array(
-    'text/html;level=1',
-    'text/html;level=2',
-);
-
-// get the best match between what the request finds acceptable and what we
-// have available; the result in this case is 'text/html;level=1'
-$media = $request->accept->media->negotiate($available);
-echo $media->available->getValue(); // text/html
-var_dump($media->available->getParameters()); // array('level' => '1')
-?>
-```
-
-I> Parameters in the acceptable values that are not present in the
-I> available values will not be used for matching.
-
-
-## Params
+## Params {#request-params}
 
 Unlike most _Request_ property objects, the _Params_ object is read-write (not
 read-only). The _Params_ object allows you to set application-specific
@@ -280,7 +188,7 @@ $all_params = $request->params->get();
 ?>
 ```
 
-## Url
+## Url {#request-url}
 
 The `$request->url` object has two methods:
 

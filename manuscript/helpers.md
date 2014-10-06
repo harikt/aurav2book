@@ -10,7 +10,7 @@ package to make use of the various HTML helpers.
 Aura.Html provides HTML escapers and helpers, including form input
 helpers.
 
-## Installing Aura.Html
+## Installing Aura.Html {#helpers-installation}
 
 Edit your `composer.json` file and add `"aura/html": "2.0.*"` in
 the require section.
@@ -30,7 +30,7 @@ Save the file, and run
 composer update
 ```
 
-## DI Configuration
+## DI Configuration {#helpers-configuration}
 
 The DI configuration for Aura.Html is already in
 [config/Common.php](https://github.com/auraphp/Aura.Html/blob/develop-2/config/Common.php)
@@ -76,7 +76,7 @@ class Common extends Config
 }
 ```
 
-## Tag Helpers
+## Tag Helpers {#helpers-tags}
 
 Use a helper by calling it as a method on the _HelperLocator_. The available helpers are:
 
@@ -483,7 +483,7 @@ echo $this->title();
 
 ## Form Helpers {#form-helpers}
 
-## The Form Element
+## The Form Element {#helpers-form-element}
 
 Open and close a form element like so:
 
@@ -500,7 +500,7 @@ echo $this->tag('/form');
 <form id="my-form" method="put" action="/hello-action" enctype="multipart/form-data"></form>
 ```
 
-## HTML 5 Input Elements
+## HTML 5 Input Elements {#helpers-html5-input}
 
 All of the HTML 5 input helpers use the same method signature: a single descriptor array that formats the input element.
 

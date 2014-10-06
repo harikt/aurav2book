@@ -1,4 +1,4 @@
-# Command line / cli / console
+# Command line / cli / console {#cli}
 
 In this chapter we assume you have installed either `aura/framework-project`
 or `aura/cli-project`.
@@ -8,9 +8,9 @@ library. Aura.Cli can be used as standalone library. Please
 [refer getting started](https://github.com/auraphp/Aura.Cli#getting-started)
 if you looking for standalone usage.
 
-## Features of Aura.Cli
+## Features of Aura.Cli {#cli-features}
 
-### Context Discovery
+### Context Discovery {#cli-context-discovery}
 
 The _Context_ object provides information about the command line environment,
 including any option flags passed via the command line. (This is the command
@@ -41,7 +41,7 @@ $value = $context->env->get('key', 'other_value');
 ?>
 ```
 
-### Getopt Support
+### Getopt Support {#cli-getopt-support}
 
 The _Context_ object provides support for retrieving command-line options and
 params, along with positional arguments.
@@ -50,7 +50,7 @@ To retrieve options and arguments parsed from the command-line `$argv` values,
 use the `getopt()` method on the _Context_ object. This will return a
 _GetoptValues_ object for you to use as as you wish.
 
-#### Defining Options and Params
+#### Defining Options and Params {#cli-defining-options}
 
 To tell `getopt()` how to recognize command line options, pass an array of
 option definitions. The definitions array format is similar to, but not
@@ -198,7 +198,7 @@ I> If a short flag has an optional parameter, the argument immediately
 I> after it will be treated as the option value, not as an argument.
 
 
-### Standard Input/Output Streams
+### Standard Input/Output Streams {#cli-input-output-streams}
 
 The _Stdio_ object allows you to work with standard input/output streams.
 (This is the command line equivalent of a web response object.)
@@ -236,7 +236,7 @@ $stdio->errln('Output will stay red until a formatting change.<<reset>>');
 ?>
 ```
 
-### Exit Codes
+### Exit Codes {#cli-exit-codes}
 
 This library comes with a _Status_ class that defines constants for exit
 status codes. You should use these whenever possible.  For example, if a
@@ -244,7 +244,7 @@ command is used with the wrong number of arguments or improper option flags,
 `exit()` with `Status::USAGE`.  The exit status codes are the same as those
 found in [sysexits.h](http://www.unix.com/man-page/freebsd/3/sysexits/).
 
-### Writing Commands
+### Writing Commands {#cli-writing-commands}
 
 The Aura.Cli library does not come with an abstract or base command class to
 extend from, but writing commands for yourself is straightforward. The
@@ -290,7 +290,7 @@ exit(Status::SUCCESS);
 ?>
 ```
 
-### Writing Command Help
+### Writing Command Help {#cli-writing-cmd-help}
 
 Sometimes it will be useful to provide help output for your commands. With Aura.Cli, the _Help_ object is separate from any command you may write. It may be manipulated externally or extended.
 
@@ -405,7 +405,7 @@ Aura.Cli_Kernel defines the following service objects in the _Container_:
 - `aura/cli-kernel:help_service`: an instance of _Aura\\Cli_Kernel\\HelpService_
 - `aura/project-kernel:logger`: an instance of `Monolog\\Logger`
 
-## Quick Start
+## Quick Start {#cli-quick-start}
 
 The dependency injection _Container_ is absolutely central to the operation
 of an Aura project. Please be familiar with
@@ -414,18 +414,18 @@ of an Aura project. Please be familiar with
 You should also familiarize yourself with [Aura.Dispatcher](#dispatching),
 as well as the Aura.Cli _Context_, _Stdio_, and _Status_ objects.
 
-## Project Configuration
+## Project Configuration {#cli-project-configuration}
 
 Every Aura project is configured the same way. Please see the [shared configuration docs](#configuration) for more information.
 
-## Logging
+## Logging {#cli-logging}
 
 The project automatically logs to `{$PROJECT_PATH}/tmp/log/{$mode}.log`.
 If you want to change the logging behaviors for a particular config mode,
 edit the related config file (e.g., `config/Dev.php`) file to modify
 the `aura/project-kernel:logger` service.
 
-## Commands
+## Commands {#cli-commands}
 
 We configure commands via the project-level `config/` class files.
 If a command needs to be available in every config mode, edit the
@@ -435,7 +435,7 @@ file for that mode.
 
 Here are two different styles of command definition.
 
-## Micro-Framework Style
+## Micro-Framework Style {#cli-microframework}
 
 The following is an example of a command where the logic is embedded in the dispatcher, using the `aura/cli-kernel:context` and `aura/cli-kernel:stdio` services along with standard exit codes. (The dispatcher object name doubles as the command name.)
 
@@ -478,7 +478,7 @@ You can now run the command to see its output.
 
 (If you do not pass an ID argument, you will see an error message.)
 
-## Full-Stack Style
+## Full-Stack Style {#cli-fullstackstyle}
 
 You can migrate from a micro-controller style to a full-stack style (or start
 with full-stack style in the first place).
