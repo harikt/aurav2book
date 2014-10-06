@@ -99,7 +99,7 @@ There is also a series of [helpers for forms](#form-helpers).
 
 Helper for `<a>` tags.
 
-```html+php
+```php
 <?php
 echo $this->a(
     'http://auraphp.com',       // (string) href
@@ -114,7 +114,7 @@ echo $this->a(
 
 Helper for `<base>` tags.
 
-```html+php
+```php
 <?php
 echo $this->base(
     '/base' // (string) href
@@ -127,7 +127,7 @@ echo $this->base(
 
 Helper for `<img>` tags.
 
-```html+php
+```php
 <?php
 echo $this->img(
     '/images/hello.jpg',            // (string) image href src
@@ -142,7 +142,7 @@ echo $this->img(
 
 Helper for `<label>` tags.
 
-```html+php
+```php
 <?php
 echo $this->label(
     'Label For Field',          // (string) label text
@@ -175,7 +175,7 @@ echo $this->label(' (Foo)')
 
 Helper for a set of generic `<link>` tags. Build a set of links with `add()` then output them all at once.
 
-```html+php
+```php
 <?php
 // build the array of links with add()
 $this->links()->add(array(
@@ -214,7 +214,7 @@ echo $this->links()
 
 Helper for a set of `<meta>` tags. Build a set of metas with `add*()` then output them all at once.
 
-```html+php
+```php
 <?php
 // add an http-equivalent meta
 $this->metas()->addHttp(
@@ -254,7 +254,7 @@ echo $this->metas()
 
 Helper for `<ol>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
-```html+php
+```php
 <?php
 // start the list of items
 $this->ol(array(                  // (array) optional attributes
@@ -304,7 +304,7 @@ echo $this->ol();
 
 Helper for a set of `<script>` tags. Build a set of script links, then output them all at once.
 
-```html+php
+```php
 <?php
 // add a single script
 $this->scripts()->add('/js/middle.js');
@@ -338,7 +338,7 @@ The `scriptsFoot()` helper works the same way, but is intended for placing a sep
 
 Helper for `<ul>` tags with `<li>` items.  Build the set of items (both raw and escaped) then output them all at once.
 
-```html+php
+```php
 <?php
 // start the list of items
 $this->ul(array(                  // (array) optional attributes
@@ -388,7 +388,7 @@ echo $this->ul();
 
 Helper for a set of `<link>` tags for stylesheets. Build a set of style links, then output them all at once. As with the `script` helper, you can optionally set the priority order for each stylesheet.
 
-```html+php
+```php
 <?php
 // add a stylesheet link
 $this->styles()->add(
@@ -428,7 +428,7 @@ echo $this->styles();
 
 A generic tag helper.
 
-```html+php
+```php
 <?php
 echo $this->tag(
     'div',                  // (string) the tag name
@@ -443,7 +443,7 @@ echo $this->tag('/div');
 
 Helper for the `<title>` tag.
 
-```html+php
+```php
 <?php
 // escaped variations (can be intermixed with raw variations)
 
@@ -487,7 +487,7 @@ echo $this->title();
 
 Open and close a form element like so:
 
-```html+php
+```php
 <?php
 echo $this->form(array(
     'id' => 'my-form',
@@ -504,7 +504,7 @@ echo $this->tag('/form');
 
 All of the HTML 5 input helpers use the same method signature: a single descriptor array that formats the input element.
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => $type,     // (string) the element type
@@ -548,7 +548,7 @@ The available input element `type` values are:
 
 ### button {#button}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'button',
@@ -564,7 +564,7 @@ echo $this->input(array(
 
 The `checkbox` type honors the `value_unchecked` pseudo-attribute as a way to specify a `hidden` element for the (you guessed it) unchecked value. It also honors the pseudo-element `label` to place a label after the checkbox.
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'checkbox',
@@ -583,7 +583,7 @@ echo $this->input(array(
 
 ### color {#color}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'color',
@@ -597,7 +597,7 @@ echo $this->input(array(
 
 ### date {#date}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'date',
@@ -611,7 +611,7 @@ echo $this->input(array(
 
 ### datetime {#datetime}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'datetime',
@@ -625,7 +625,7 @@ echo $this->input(array(
 
 ### datetime-local {#datetime-local}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'datetime-local',
@@ -639,7 +639,7 @@ echo $this->input(array(
 
 ### email {#email}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'email',
@@ -653,7 +653,7 @@ echo $this->input(array(
 
 ### file {#file}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'file',
@@ -667,7 +667,7 @@ echo $this->input(array(
 
 ### hidden {#hidden}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'hidden',
@@ -681,7 +681,7 @@ echo $this->input(array(
 
 ### image {#image}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'image',
@@ -695,7 +695,7 @@ echo $this->input(array(
 
 ### month {#month}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'month',
@@ -709,7 +709,7 @@ echo $this->input(array(
 
 ### number {#number}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'number',
@@ -723,7 +723,7 @@ echo $this->input(array(
 
 ### password {#password}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'password',
@@ -739,7 +739,7 @@ echo $this->input(array(
 
 This element type allows you to generate a single radio input, or multiple radio inputs if you pass an `options` element.
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'radio',
@@ -760,7 +760,7 @@ echo $this->input(array(
 
 ### range {#range}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'range',
@@ -774,7 +774,7 @@ echo $this->input(array(
 
 ### reset {#reset}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'reset',
@@ -788,7 +788,7 @@ echo $this->input(array(
 
 ### search {#search}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'search',
@@ -804,7 +804,7 @@ echo $this->input(array(
 
 Helper for a `<select>` tag with `<option>` tags. The pseudo-attribute `placeholder` is honored as a placeholder label when no option is selected. Using the attribute `'multiple' => true` will set up a multiple select, and automatically add `[]` to the name if it is not already there.
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'select',
@@ -872,7 +872,7 @@ echo $select;
 
 The helper also supports option groups. If an `options` array value is itself an array, the key for that element will be used as an `<optgroup>` label and the array of values will be options under that group.
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'select',
@@ -955,7 +955,7 @@ echo $select;
 
 ### submit {#submit}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'submit',
@@ -969,7 +969,7 @@ echo $this->input(array(
 
 ### tel {#tel}
 
-```html+php
+```php
 <?php
 echo $this->irnput(array(
     'type'    => 'tel',
@@ -983,7 +983,7 @@ echo $this->irnput(array(
 
 ### text {#text}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'text',
@@ -997,7 +997,7 @@ echo $this->input(array(
 
 ### textarea {#textarea}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'textarea',
@@ -1011,7 +1011,7 @@ echo $this->input(array(
 
 ### time {#time}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'time',
@@ -1025,7 +1025,7 @@ echo $this->input(array(
 
 ### url {#url}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'url',
@@ -1039,7 +1039,7 @@ echo $this->input(array(
 
 ### week {#week}
 
-```html+php
+```php
 <?php
 echo $this->input(array(
     'type'    => 'week',
