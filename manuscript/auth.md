@@ -112,9 +112,10 @@ class AuthService
 ## Configuration
 
 T> Set the adapter according to your choice : `$di->set('aura/auth:adapter', $di->lazyNew('Aura\Auth\Adapter\PdoAdapter'));`
+
 T> If you need to call `AuthService` from action : `$di->params['Some\BlogAction']['auth'] = $di->lazyGet('aura/auth:auth_service');`
 
-> Assuming you have already set your connection so is loadable via lazy call : `$di->lazyGet('default_connection')` . Make sure the  class `Vendor\Package\AuthService` is autoladable.
+W> Assuming you have already set your connection so is loadable via lazy call : `$di->lazyGet('default_connection')` . Make sure the  class `Vendor\Package\AuthService` is autoladable.
 
 ```php
 <?php
