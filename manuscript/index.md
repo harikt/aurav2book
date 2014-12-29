@@ -14,6 +14,7 @@ Navigation
 * [Validation](validation.md)
 * [Internationalization](intl.md)
 * [Session](session.md)
+* [Authentication](auth.md)
 * [ADR](adr.md)
 * [Cli](cli.md)
 * [Setup](setup.md)

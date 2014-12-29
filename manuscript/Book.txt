@@ -11,6 +11,7 @@ forms.md
 validation.md
 intl.md
 session.md
+auth.md
 adr.md
 cli.md
 setup.md
