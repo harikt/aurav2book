@@ -2,14 +2,11 @@
 
 Authentication is made possible with the help of [aura/auth](https://packagist.org/packages/aura/auth).
 
-> If you are not using PHP 5.5, it is recommended  to use [ircmaxell/password-compat](https://packagist.org/packages/ircmaxell/password-compat) to make use of [password_](http://php.net/password) functions.
-
 ```json
 {
     "require": {
         // more packages
-        "aura/auth": "2.0.*@dev",
-        "ircmaxell/password-compat": "~1.0"
+        "aura/auth": "2.0.*@dev"
     }
 }
 ```
@@ -166,6 +163,8 @@ class Common extends Config
     // more code
 }
 ```
+
+I> If you are not using PHP 5.5, it is recommended to use [ircmaxell/password-compat](https://packagist.org/packages/ircmaxell/password-compat) to make use of [password_](http://php.net/password) functions.
 
 Consider [reading adapters](https://github.com/auraphp/Aura.Auth/blob/develop-2/README.md#adapters) if you need changes/improvements.
 
