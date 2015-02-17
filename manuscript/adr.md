@@ -1,7 +1,6 @@
 # Action Domain Responder {#adr}
 
-We recommend you reading the
-[MVC to ADR draft](https://github.com/pmjones/mvc-refinement).
+It is recommend to read [Action Domain Responder](https://pmjones.github.io/adr/) in short ADR.
 
 Aura framework v2 promote the usage of one action per class.
 
@@ -31,7 +30,19 @@ results from the _Domain_ interaction, data from the client request, and so on.)
 
 1. The web handler sends the response back to the client.
 
-## Responder {#adr-responder}
+## Responder Bundle {#responder-bundle}
+
+We have [FOA.Responder_Bundle](https://github.com/friendsofaura/FOA.Responder_Bundle)
+which helps to render different template engines like Aura.View, Twig, Mustache etc.
+See [full list](https://github.com/friendsofaura/FOA.Responder_Bundle#integrated-templating-engines).
+
+### Installation
+
+```bash
+composer require foa/responder-bundle
+```
+
+> Note : Current version 0.4
 
 Let us modify our previous example of _BlogRead_ action class to
 render the contents via _BlogRead_ responder.
@@ -47,74 +58,32 @@ namespace App\Responders;
 
 use Aura\View\View;
 use Aura\Web\Response;
+use FOA\Responder_Bundle\AbstractResponder;
 
-class BlogRead
+class BlogRead extends AbstractResponder
 {
-    protected $data;
-
-    protected $response;
-
-    protected $view;
-
-    public function __construct(Response $response, View $view)
-    {
-        $this->response = $response;
-        $this->view = $view;
-        $this->data = (object) array();
-        $this->init();
-    }
+    protected $available = array(
+        'text/html' => '',
+        'application/json' => '.json',
+    );
 
     protected function init()
     {
         $view_registry = $this->view->getViewRegistry();
         $view_registry->set('read', __DIR__ . '/views/read.php');
+
+        $layout_registry = $this->view->getLayoutRegistry();
+        $layout_registry->set('layout', __DIR__ . '/layouts/default.php');
+
+        // the above four lines are only needed for Aura.View
+        // for it could not locate the template by its own
+
+        $this->payload_method['FOA\DomainPayload\Found'] = 'display';
     }
 
-    public function __get($key)
+    protected function display()
     {
-        return $this->data->$key;
-    }
-
-    public function __set($key, $val)
-    {
-        $this->data->$key = $val;
-    }
-
-    public function __isset($key)
-    {
-        return isset($this->data->$key);
-    }
-
-    public function __unset($key)
-    {
-        unset($this->data->$key);
-    }
-
-    public function __invoke()
-    {
-        $responded = $this->notFound('blog')
-                  || $this->responseView('read');
-
-        if ($responded) {
-            return $this->response;
-        }
-    }
-
-    protected function responseView($view)
-    {
-        $this->view->setView($view);
-        $this->view->setData($this->data);
-        $this->response->content->set($this->view->__invoke());
-        return $this->response;
-    }
-
-    protected function notFound($key)
-    {
-        if (! $this->data->$key) {
-            $this->response->status->set(404);
-            $this->response->content->set("404 not found");
-            return $this->response;
-        }
+        $this->renderView('read', 'layout');
     }
 }
 ```
@@ -138,6 +107,7 @@ namespace App\Actions;
 
 use Aura\Web\Request;
 use App\Responders\BlogRead as BlogReadResponder;
+use FOA\DomainPayload\PayloadFactory;
 
 class BlogRead
 {
@@ -157,11 +127,14 @@ class BlogRead
     public function __invoke($id)
     {
         $blog = (object) array(
-            'id' => $id
+            'id' => $id, 'title' => 'Some awesome title', 'author' => 'Hari KT'
         );
         // In real life you want to do something like
         // $blog = $this->service->fetchId($id);
-        $this->responder->blog = $blog;
+
+        $payload_factory = new PayloadFactory();
+        $payload = $payload_factory->found($blog);
+        $this->responder->setPayload($payload);
         return $this->responder;
     }
 }
@@ -171,7 +144,7 @@ Modify our Closure as a view file and save in
 `{$PROJECT_PATH}/src/App/Responders/views/read.php`.
 
 ```php
-<?php echo "Reading blog post {$this->blog->id}!"; ?>
+<?php echo "Reading '{$this->blog->title}' with post id: {$this->blog->id} !"; ?>
 ```
 
 Time to edit your configuration file `{$PROJECT_PATH}/config/Common.php` .
@@ -185,13 +158,14 @@ $di->params['App\Actions\BlogRead'] = array(
     'responder' => $di->lazyNew('App\Responders\BlogRead'),
 );
 
-$di->params['App\Responders\BlogRead'] = array(
-    'response' => $di->lazyGet('aura/web-kernel:response'),
-    'view' => $di->lazyNew('Aura\View\View'),
-);
+$di->params['FOA\Responder_Bundle\Renderer\AuraView']['engine'] = $di->lazyNew('Aura\View\View');
+// responder
+$di->params['FOA\Responder_Bundle\AbstractResponder']['response'] = $di->lazyGet('aura/web-kernel:response');
+$di->params['FOA\Responder_Bundle\AbstractResponder']['renderer'] = $di->lazyNew('FOA\Responder_Bundle\Renderer\AuraView');
+$di->params['FOA\Responder_Bundle\AbstractResponder']['accept'] = $di->lazyNew('Aura\Accept\Accept');
 ```
 
-Now time to browse the `http://localhost:8000/blog/read/1` .
+Browse the `http://localhost:8000/blog/read/1` .
 
 ### Questions {#adr-questions}
 
@@ -202,147 +176,4 @@ to its own layers which will help us in testing the application.
 Web applications get evolved even we start small, so testing each and
 every part is always a great way to move forward.
 
-This help us in to test the action classes, services etc. There are still
-more room to improve like moving the methods which are always
-needed for any responder to an _AbstractResponder_ etc.
-
-## Abstract Responder {#adr-abstract-responder}
-
-We have intentionally left not to make _AbstractResponder_ .
-We feel most of them who are reading the docs will be new
-to the concept of ADR.
-So let us make the necessary changes like removing
-some of the methods to make an _AbstractResponder_
-which can be extended by the _BlogRead_ responder.
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Responders/AbstractResponder.php
- */
-namespace App\Responders;
-
-use Aura\View\View;
-use Aura\Web\Response;
-
-abstract class AbstractResponder
-{
-    protected $data;
-
-    protected $response;
-
-    protected $view;
-
-    public function __construct(Response $response, View $view)
-    {
-        $this->response = $response;
-        $this->view = $view;
-        $this->data = (object) array();
-        $this->init();
-    }
-
-    protected function init()
-    {
-        // empty by default
-    }
-
-    public function __get($key)
-    {
-        return $this->data->$key;
-    }
-
-    public function __set($key, $val)
-    {
-        $this->data->$key = $val;
-    }
-
-    public function __isset($key)
-    {
-        return isset($this->data->$key);
-    }
-
-    public function __unset($key)
-    {
-        unset($this->data->$key);
-    }
-
-    abstract public function __invoke();
-
-    protected function responseView($view)
-    {
-        $this->view->setView($view);
-        $this->view->setData($this->data);
-        $this->response->content->set($this->view->__invoke());
-        return $this->response;
-    }
-
-    protected function notFound($key)
-    {
-        if (! $this->data->$key) {
-            $this->response->status->set(404);
-            return $this->response;
-        }
-    }
-}
-```
-
-Edit your file `{$PROJECT_PATH}/src/App/Responders/BlogRead.php` keeping
-only an `init()` method and `__invoke()` method. The `init()` helps us
-to set the views and the path which need to be renderd by the responder.
-
-```php
-<?php
-/**
- * {$PROJECT_PATH}/src/App/Responders/BlogRead.php
- */
-namespace App\Responders;
-
-use Aura\View\View;
-use Aura\Web\Response;
-
-class BlogRead extends AbstractResponder
-{
-    protected function init()
-    {
-        $view_registry = $this->view->getViewRegistry();
-        $view_registry->set('read', __DIR__ . '/views/read.php');
-    }
-
-    public function __invoke()
-    {
-        $responded = $this->notFound('blog')
-                  || $this->responseView('read');
-
-        if ($responded) {
-            return $this->response;
-        }
-    }
-}
-```
-
-We also need to make some changes to the `{$PROJECT_PATH}/config/Common.php`
-file to make use of the inheritance for the DI container rather than we
-always set the _View_ and _Response_ object.
-
-We are modifying
-
-```php
-$di->params['App\Responders\BlogRead'] = array(
-    'response' => $di->lazyGet('aura/web-kernel:response'),
-    'view' => $di->lazyNew('Aura\View\View'),
-);
-```
-
-to
-
-```php
-$di->params['App\Responders\AbstractResponder'] = array(
-    'response' => $di->lazyGet('aura/web-kernel:response'),
-    'view' => $di->lazyNew('Aura\View\View'),
-);
-```
-
-Basically only the `params['App\Responders\BlogRead']` is changed to
-`params['App\Responders\AbstractResponder']`
-
-Try out and you will see things working again.
+This help us in to test the action classes, services etc.
