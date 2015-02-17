@@ -1,7 +1,5 @@
 # Aura Framework v2: The Missing Manual
 
-> Discontinued. If you are interested fork, and continue.
-
 *Aura Framework v2: The Missing Manual* is a clean and concise guide 
 to using the upcoming Aura Framework v2, a powerful and flexible system for web as well as command line applications.
 
@@ -25,7 +23,7 @@ You can find Aura version 1 packages at [http://auraphp.com/packages/](http://au
 
 This book assumes you have intermediate knowledge of PHP 5. Experiences with other frameworks will be helpful, but isn't necessary.
 
-*Aura Framework v2: The Missing Manual* is [free to read the book online](https://leanpub.com/aurav2/read).
+Thank you [for purchasing a copy from leanpub](https://leanpub.com/aurav2/read).
 
 ## Licence
 
@@ -41,5 +39,3 @@ to add or change things.
 
 If you find a bug, but you don't have the time to fix it yourself, please create an 
 [issue](https://github.com/harikt/aurav2book/issues) and the authors will look into it.
-
-Thank you for reading!
