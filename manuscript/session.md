@@ -5,23 +5,10 @@ session segments, next-request-only ("flash") values, and CSRF tools.
 
 ## Installation {#session-installation}
 
-We are going to install `aura/session` version `2.0.*@dev` .
-
-Add to your `composer.json`.
-
-```json
-{
-    "require": {
-        //
-        "aura/session": "2.0.*@dev"
-    }
-}
-```
-
-and run
+We are going to install `aura/session`.
 
 ```bash
-composer update
+composer require aura/session
 ```
 
 ## Service {#session-service}

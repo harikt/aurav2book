@@ -69,15 +69,6 @@ class BlogRead extends AbstractResponder
 
     protected function init()
     {
-        $view_registry = $this->view->getViewRegistry();
-        $view_registry->set('read', __DIR__ . '/views/read.php');
-
-        $layout_registry = $this->view->getLayoutRegistry();
-        $layout_registry->set('layout', __DIR__ . '/layouts/default.php');
-
-        // the above four lines are only needed for Aura.View
-        // for it could not locate the template by its own
-
         $this->payload_method['FOA\DomainPayload\Found'] = 'display';
     }
 

@@ -6,7 +6,6 @@ request.md
 response.md
 di.md
 view.md
-helpers.md
 forms.md
 validation.md
 intl.md

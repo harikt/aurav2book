@@ -12,11 +12,10 @@ There are 3 types of skeletons
 * aura/cli-project : only for command line applications.
 * aura/framework-project : supports both web and cli
 
-We are going to install `aura/framework-project`, so we can show command line
-examples.
+We are going to install `aura/framework-project`, so we can show command line examples also.
 
 ```php
-composer create-project --stability=dev aura/framework-project {$PROJECT_PATH}
+composer create-project aura/framework-project {$PROJECT_PATH}
 ```
 
 I> Replace {$PROJECT_PATH} with real path
@@ -93,8 +92,8 @@ public function modifyWebRouter(Container $di)
 }
 ```
 
-The `modifyWebRouter()` gets the shared router service and adds a route
-named `hello` which points to `/` . So any request to `http://localhost:8000`
+The `modifyWebRouter()` gets the shared router service and add a named route
+`hello` which points to `/`. So any request to `http://localhost:8000`
 is satisfied by route named `hello`.
 
 Now we have the route, the router don't know what to do when a request come.

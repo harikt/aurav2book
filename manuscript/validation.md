@@ -7,22 +7,7 @@ We are going to look into version 1 of Aura.Filter.
 
 ## Installation {#validation-installation}
 
-We have already installed `aura/filter` adding `foa/filter-intl-bundle` into `composer.json`.
-
-```json
-{
-    "require": {
-        //
-        "foa/filter-intl-bundle": "1.1.*"
-    }
-}
-```
-
-and run
-
-```bash
-composer update
-```
+We have already installed `aura/filter` in the previous chapter about forms. If you have not installed please do the same.
 
 ## Applying Rules to Data Objects {#validation-applying-rules}
 

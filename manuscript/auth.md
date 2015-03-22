@@ -23,8 +23,6 @@ We will concentrate on authentication via PDO adapter.
 
 ## Building Service class
 
-To make things simple, we need an `AuthService` class. We don't need this, if [PR 59](https://github.com/auraphp/Aura.Auth/pull/59) is merged.
-
 ```php
 <?php
 namespace Vendor\Package;
